@@ -15,7 +15,6 @@
         <div class="eyebrow">SMART AXIATA × AIonOS</div>
         <h1>AI Transformation Event Demo</h1>
       </div>
-      <div id="clock" class="clock">00:00 / 18:00</div>
     </header>
 
 
@@ -39,16 +38,7 @@
 
     <aside class="telemetry-panel" aria-live="polite">
       <div class="panel-title">Live Agent Telemetry</div>
-      <div class="telemetry-grid">
-        <div class="graph-card">
-          <div id="metricALabel" class="graph-label">Inference Throughput</div>
-          <svg id="throughputGraph" class="spark" viewBox="0 0 260 72" preserveAspectRatio="none"></svg>
-        </div>
-        <div class="graph-card">
-          <div id="metricBLabel" class="graph-label">Risk Pressure</div>
-          <svg id="queueGraph" class="spark queue" viewBox="0 0 260 72" preserveAspectRatio="none"></svg>
-        </div>
-      </div>
+      <div id="telemetryGrid" class="telemetry-grid"></div>
       <div id="modelDetails" class="model-details"></div>
       <div id="telemetryFeed" class="telemetry-feed"></div>
     </aside>
