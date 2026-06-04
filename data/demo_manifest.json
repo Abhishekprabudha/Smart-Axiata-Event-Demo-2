@@ -1,0 +1,56 @@
+{
+  "total_duration_seconds": 1080,
+  "chapters": [
+    {
+      "name": "Airport Ecosystem",
+      "start": 0,
+      "end": 180,
+      "scenes": 15
+    },
+    {
+      "name": "Commercial Airlines",
+      "start": 180,
+      "end": 360,
+      "scenes": 6
+    },
+    {
+      "name": "Cargo Airlines",
+      "start": 360,
+      "end": 540,
+      "scenes": 6
+    },
+    {
+      "name": "Supply Chain",
+      "start": 540,
+      "end": 720,
+      "scenes": 6
+    },
+    {
+      "name": "Manufacturing",
+      "start": 720,
+      "end": 900,
+      "scenes": 6
+    },
+    {
+      "name": "BFSI",
+      "start": 900,
+      "end": 1080,
+      "scenes": 6
+    }
+  ],
+  "uploaded_video_assets_used": [
+    "commercial-airline-1.mp4",
+    "commercial-airline-2.mp4",
+    "commercial-airline-3.mp4",
+    "cargo-airline-4.mp4",
+    "cargo-airline-5.mp4",
+    "supply-chain-6.mp4",
+    "supply-chain-7.mp4",
+    "manufacturing-8.mp4",
+    "manufacturing-9.mp4",
+    "bfsi-10.mp4",
+    "bfsi-11.mp4",
+    "bfsi-12.mp4"
+  ],
+  "known_gap": "Cargo airline 3.mp4 was referenced by the brief but was not present in the uploaded sandbox files."
+}

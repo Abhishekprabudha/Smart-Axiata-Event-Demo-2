@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Airport Ecosystem",
+    "start": 0,
+    "end": 180,
+    "scenes": 15
+  },
+  {
+    "name": "Commercial Airlines",
+    "start": 180,
+    "end": 360,
+    "scenes": 6
+  },
+  {
+    "name": "Cargo Airlines",
+    "start": 360,
+    "end": 540,
+    "scenes": 6
+  },
+  {
+    "name": "Supply Chain",
+    "start": 540,
+    "end": 720,
+    "scenes": 6
+  },
+  {
+    "name": "Manufacturing",
+    "start": 720,
+    "end": 900,
+    "scenes": 6
+  },
+  {
+    "name": "BFSI",
+    "start": 900,
+    "end": 1080,
+    "scenes": 6
+  }
+]

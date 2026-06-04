@@ -1,0 +1,951 @@
+[
+  {
+    "id": "opening",
+    "start": 0,
+    "end": 12,
+    "video": "airport-command-center.mp4",
+    "section": "AIonOS x SMART Aviation AI",
+    "headline": "Welcome to AIonOS for Aviation",
+    "caption": "Meet the AI-native airport intelligence layer that keeps landside, terminal, airside and building systems moving as one — powered by SMART connectivity.",
+    "agents": [
+      "Unified AI Ops Centre",
+      "Airport Digital Twin",
+      "SMART Connectivity Layer"
+    ],
+    "kpis": {
+      "Operational Visibility": "Live",
+      "Risk Detection": "Predictive",
+      "Command Layer": "Unified"
+    },
+    "chapter": "Airport Ecosystem",
+    "voice": "Welcome to AIonOS for Aviation. Meet the AI-native airport intelligence layer that keeps landside, terminal, airside and building systems moving as one — powered by SMART connectivity."
+  },
+  {
+    "id": "landside-city",
+    "start": 12,
+    "end": 24,
+    "video": "city-side-airport.mp4",
+    "section": "Landside AI",
+    "headline": "Arrival Surge Predicted Before Congestion Forms",
+    "caption": "The Passenger Flow Agent detects an inbound surge while car park and transport agents prepare capacity before the queues become visible.",
+    "agents": [
+      "Passenger Flow Agent",
+      "Smart Car Park Ops Agent",
+      "Ground Transport Dispatch Agent"
+    ],
+    "kpis": {
+      "Queue Risk": "High → Controlled",
+      "Pickup SLA": "72% → 94%",
+      "Car Park Load": "91% → Balanced"
+    },
+    "chapter": "Airport Ecosystem",
+    "voice": "Arrival Surge Predicted Before Congestion Forms. The Passenger Flow Agent detects an inbound surge while car park and transport agents prepare capacity before the queues become visible."
+  },
+  {
+    "id": "landside-rush",
+    "start": 24,
+    "end": 36,
+    "video": "people-rushing.mp4",
+    "section": "Landside AI",
+    "headline": "Pedestrian Speed Signals Flag Peak Pressure",
+    "caption": "Real-time motion analytics detect fast-forming pressure zones and trigger preemptive queue routing before bottlenecks escalate.",
+    "agents": [
+      "Passenger Velocity Monitor",
+      "Queue Prediction Agent",
+      "Wayfinding Recommendation Agent"
+    ],
+    "kpis": {
+      "Queue Growth": "Slowed",
+      "Intervention Lead Time": "+6 min",
+      "Flow Stability": "Improved"
+    },
+    "chapter": "Airport Ecosystem",
+    "voice": "Pedestrian Speed Signals Flag Peak Pressure. Real-time motion analytics detect fast-forming pressure zones and trigger preemptive queue routing before bottlenecks escalate."
+  },
+  {
+    "id": "landside-crowd",
+    "start": 36,
+    "end": 48,
+    "video": "crowd-at-airport.mp4",
+    "section": "Passenger Intelligence",
+    "headline": "Crowd Heatmaps Trigger Staff Repositioning",
+    "caption": "AIonOS converts anonymous mobility signals into crowd heatmaps and automatically recommends staffing, queue routing and wayfinding changes.",
+    "agents": [
+      "Passenger Location Intelligence",
+      "Queue Prediction Agent",
+      "Wayfinding Recommendation Agent"
+    ],
+    "kpis": {
+      "Crowd Incident Risk": "-40%",
+      "Wait Time": "-35%",
+      "Pax Satisfaction": "+22 pts"
+    },
+    "chapter": "Airport Ecosystem",
+    "voice": "Crowd Heatmaps Trigger Staff Repositioning. AIonOS converts anonymous mobility signals into crowd heatmaps and automatically recommends staffing, queue routing and wayfinding changes."
+  },
+  {
+    "id": "terminal-core",
+    "start": 48,
+    "end": 60,
+    "video": "terminal-interiors.mp4",
+    "section": "Terminal AI",
+    "headline": "Terminal Operations Become Self-Aware",
+    "caption": "Inside the terminal, every gate, trolley, kiosk, wheelchair, retail zone and passenger flow becomes part of one operating model.",
+    "agents": [
+      "Terminal Asset Tracking Agent",
+      "Wheelchair Dispatch Agent",
+      "Retail & F&B Intelligence Agent",
+      "Passenger Dwell Analytics Agent"
+    ],
+    "kpis": {
+      "Asset Visibility": "100%",
+      "Retail Revenue": "+18%",
+      "Mobility SLA": "Protected"
+    },
+    "chapter": "Airport Ecosystem",
+    "voice": "Terminal Operations Become Self-Aware. Inside the terminal, every gate, trolley, kiosk, wheelchair, retail zone and passenger flow becomes part of one operating model."
+  },
+  {
+    "id": "baggage-belt-ops",
+    "start": 60,
+    "end": 72,
+    "video": "baggage-belt.mp4",
+    "section": "Baggage Intelligence",
+    "headline": "Belt Throughput Balancing Cuts Queue Spillover",
+    "caption": "Conveyor utilization and arrival waves are synchronized to reduce claim-area buildup and improve passenger movement.",
+    "agents": [
+      "Baggage Throughput Agent",
+      "Carousel Allocation Agent",
+      "Queue Spillover Monitor"
+    ],
+    "kpis": {
+      "Belt Saturation": "Reduced",
+      "Claim Queue": "-28%",
+      "Passenger Throughput": "+16%"
+    },
+    "chapter": "Airport Ecosystem",
+    "voice": "Belt Throughput Balancing Cuts Queue Spillover. Conveyor utilization and arrival waves are synchronized to reduce claim-area buildup and improve passenger movement."
+  },
+  {
+    "id": "baggage",
+    "start": 72,
+    "end": 84,
+    "video": "busy-baggage-belt.mp4",
+    "section": "Baggage Intelligence",
+    "headline": "Baggage Mismatch Risk Detected Early",
+    "caption": "The Baggage Intelligence Agent tracks bag movement, flags mismatch risk and alerts teams before boarding cut-off.",
+    "agents": [
+      "Baggage Intelligence Agent",
+      "RFID Tracking Agent",
+      "Carousel Allocation Agent"
+    ],
+    "kpis": {
+      "Mishandled Bags": "-42%",
+      "Claim Time": "-8 min",
+      "Mismatch Risk": "7 bags → 1 bag"
+    },
+    "chapter": "Airport Ecosystem",
+    "voice": "Baggage Mismatch Risk Detected Early. The Baggage Intelligence Agent tracks bag movement, flags mismatch risk and alerts teams before boarding cut-off."
+  },
+  {
+    "id": "boarding-queue",
+    "start": 84,
+    "end": 96,
+    "video": "passenger-queue-boarding.mp4",
+    "section": "Gate & Boarding AI",
+    "headline": "Pre-Board Queue Segmentation Keeps Gates Fluid",
+    "caption": "The system separates boarding groups earlier and reduces congestion at gate touchpoints before final calls begin.",
+    "agents": [
+      "Boarding Queue Segmentation Agent",
+      "Gate Density Agent",
+      "PAX Count Agent"
+    ],
+    "kpis": {
+      "Gate Congestion": "-31%",
+      "Boarding Readiness": "+19%",
+      "Flow Predictability": "High"
+    },
+    "chapter": "Airport Ecosystem",
+    "voice": "Pre-Board Queue Segmentation Keeps Gates Fluid. The system separates boarding groups earlier and reduces congestion at gate touchpoints before final calls begin."
+  },
+  {
+    "id": "boarding-walkup",
+    "start": 96,
+    "end": 108,
+    "video": "passengers-boarding.mp4",
+    "section": "Gate & Boarding AI",
+    "headline": "Passenger Walk-Up Patterns Optimised",
+    "caption": "Agent-driven prompts and lane balancing smooth walk-up cadence to protect turnaround timing.",
+    "agents": [
+      "Gate & Boarding Ops Agent",
+      "Passenger Prompting Agent",
+      "Jet Bridge Congestion Agent"
+    ],
+    "kpis": {
+      "Boarding Delay": "18 min → 6 min",
+      "Gate Ops Time": "-12 min",
+      "On-time Departure": "+9 pts"
+    },
+    "chapter": "Airport Ecosystem",
+    "voice": "Passenger Walk-Up Patterns Optimised. Agent-driven prompts and lane balancing smooth walk-up cadence to protect turnaround timing."
+  },
+  {
+    "id": "boarding",
+    "start": 108,
+    "end": 120,
+    "video": "crowd-boarding-gate.mp4",
+    "section": "Gate & Boarding AI",
+    "headline": "Boarding Sequence Re-Optimised in Real Time",
+    "caption": "The Gate and Boarding Ops Agent monitors passenger density, protects jet bridge flow and resequences boarding to recover departure punctuality.",
+    "agents": [
+      "Gate & Boarding Ops Agent",
+      "Jet Bridge Congestion Agent",
+      "PAX Count Agent"
+    ],
+    "kpis": {
+      "Boarding Delay": "18 min → 4 min",
+      "Gate Ops Time": "-15 min",
+      "On-time Departure": "+12 pts"
+    },
+    "chapter": "Airport Ecosystem",
+    "voice": "Boarding Sequence Re-Optimised in Real Time. The Gate and Boarding Ops Agent monitors passenger density, protects jet bridge flow and resequences boarding to recover departure punctuality."
+  },
+  {
+    "id": "airside",
+    "start": 120,
+    "end": 132,
+    "video": "aircraft-parked.mp4",
+    "section": "Airside AI",
+    "headline": "Turnaround Risk Repaired Before It Cascades",
+    "caption": "Airside agents track GSE, monitor turnaround tasks, detect zone violations and assign the nearest crew or equipment to protect departure time.",
+    "agents": [
+      "GSE Asset Tracking Agent",
+      "Aircraft Turnaround Agent",
+      "Airside Geofencing Agent",
+      "Maintenance Crew Response Agent"
+    ],
+    "kpis": {
+      "Turnaround Delay": "22 min → 6 min",
+      "GSE Utilisation": "61% → 84%",
+      "Dispatch Time": "-40%"
+    },
+    "chapter": "Airport Ecosystem",
+    "voice": "Turnaround Risk Repaired Before It Cascades. Airside agents track GSE, monitor turnaround tasks, detect zone violations and assign the nearest crew or equipment to protect departure time."
+  },
+  {
+    "id": "runway-safety",
+    "start": 132,
+    "end": 144,
+    "video": "plane-landing.mp4",
+    "section": "Runway Safety AI",
+    "headline": "FOD Alert Dispatched in Under 30 Seconds",
+    "caption": "The FOD and Runway Safety Agent uses AI camera feeds to detect runway debris and trigger the nearest response workflow instantly.",
+    "agents": [
+      "FOD & Runway Safety Agent",
+      "AI Camera Detection Agent",
+      "Runway Response Workflow Agent"
+    ],
+    "kpis": {
+      "Detection Rate": "+95%",
+      "Response Time": "7 min → 45 sec",
+      "Safety Status": "Controlled"
+    },
+    "chapter": "Airport Ecosystem",
+    "voice": "FOD Alert Dispatched in Under 30 Seconds. The FOD and Runway Safety Agent uses AI camera feeds to detect runway debris and trigger the nearest response workflow instantly."
+  },
+  {
+    "id": "bms",
+    "start": 144,
+    "end": 156,
+    "video": "terminal-interiors.mp4",
+    "section": "AI Building Management System",
+    "headline": "The Airport Building Becomes Self-Optimising",
+    "caption": "AI HVAC, lighting, fire safety, energy, ESG and vertical transport agents coordinate through one AI-BMS operations centre.",
+    "agents": [
+      "AI HVAC & Climate Agent",
+      "Intelligent Lighting Agent",
+      "Fire & Safety AI Agent",
+      "Energy & ESG Agent",
+      "Vertical Transport Agent"
+    ],
+    "kpis": {
+      "Energy Saving": "25–35%",
+      "MTTR": "-50%",
+      "Incident Response": "<30 sec"
+    },
+    "chapter": "Airport Ecosystem",
+    "voice": "The Airport Building Becomes Self-Optimising. AI HVAC, lighting, fire safety, energy, ESG and vertical transport agents coordinate through one AI-BMS operations centre."
+  },
+  {
+    "id": "weather-ops",
+    "start": 156,
+    "end": 168,
+    "video": "aircraft-takeoff-snow.mp4",
+    "section": "Resilience AI",
+    "headline": "Weather Disruption Plans Trigger Automatically",
+    "caption": "When weather risk rises, AIonOS pre-builds de-icing, gate and crew alternatives to protect network continuity.",
+    "agents": [
+      "Weather Impact Agent",
+      "De-icing Coordination Agent",
+      "Recovery Planning Agent"
+    ],
+    "kpis": {
+      "Disruption Impact": "Reduced",
+      "Replan Time": "Minutes",
+      "Departure Reliability": "Protected"
+    },
+    "chapter": "Airport Ecosystem",
+    "voice": "Weather Disruption Plans Trigger Automatically. When weather risk rises, AIonOS pre-builds de-icing, gate and crew alternatives to protect network continuity."
+  },
+  {
+    "id": "close",
+    "start": 168,
+    "end": 180,
+    "video": "aircraft-takeoff.mp4",
+    "section": "Executive Outcome",
+    "headline": "One AI-Native Airport Operating System",
+    "caption": "Smart Axiata provides the trusted connectivity fabric. AIonOS provides the intelligence layer. Together they convert airport complexity into coordinated action.",
+    "agents": [
+      "Unified AI Ops Centre",
+      "SMART + AIonOS Aviation AI Portfolio"
+    ],
+    "kpis": {
+      "Airport Ops": "Connected",
+      "Risks": "Predicted",
+      "Outcomes": "Optimised"
+    },
+    "chapter": "Airport Ecosystem",
+    "voice": "One AI-Native Airport Operating System. Smart Axiata provides the trusted connectivity fabric. AIonOS provides the intelligence layer. Together they convert airport complexity into coordinated action."
+  },
+  {
+    "id": "commercial-open",
+    "chapter": "Commercial Airlines",
+    "start": 180,
+    "end": 210,
+    "video": "commercial-airline-1.mp4",
+    "section": "Commercial Airlines AI",
+    "headline": "From Airline Operations to Predictive Outcomes",
+    "caption": "AIonOS turns airline data, aircraft signals and passenger interactions into a live operating layer for Smart Axiata aviation clients.",
+    "agents": [
+      "Airline Digital Twin",
+      "SMART Aviation Connectivity",
+      "UniStack Ops Intelligence"
+    ],
+    "kpis": {
+      "Fleet View": "Live",
+      "Revenue Risk": "Scanning",
+      "Ops Layer": "Connected"
+    },
+    "voice": "Commercial airlines operate on thin buffers. In this chapter, Smart Axiata provides the trusted connectivity layer, while AIonOS creates the intelligence layer across aircraft, passengers, operations and revenue."
+  },
+  {
+    "id": "commercial-maintenance",
+    "chapter": "Commercial Airlines",
+    "start": 210,
+    "end": 240,
+    "video": "commercial-airline-2.mp4",
+    "section": "Predictive Maintenance",
+    "headline": "Aircraft Health Is Predicted Before AOG Risk",
+    "caption": "Sensor streams from vibration, oil, pressure and temperature are converted into component risk scores and proactive work orders.",
+    "agents": [
+      "Predictive Aircraft Maintenance Agent",
+      "Component Degradation Model",
+      "MRO Work Order Agent"
+    ],
+    "kpis": {
+      "AOG Events": "-30–40%",
+      "MRO Cost": "~20% saved",
+      "Fleet Availability": "Improved"
+    },
+    "voice": "The Predictive Aircraft Maintenance Agent watches real-time aircraft health signals. Instead of waiting for a ground event, AIonOS flags degradation forty eight to seventy two hours ahead and prepares maintenance action before availability is lost."
+  },
+  {
+    "id": "commercial-revenue",
+    "chapter": "Commercial Airlines",
+    "start": 240,
+    "end": 270,
+    "video": "commercial-airline-3.mp4",
+    "section": "Revenue Leakage Control",
+    "headline": "Leakage Is Detected While Revenue Is Still Recoverable",
+    "caption": "PSS, DCS, ancillary and interline patterns are monitored continuously to surface unbilled services and fare mismatches.",
+    "agents": [
+      "Revenue Leakage Agent",
+      "Ancillary Yield Agent",
+      "Settlement Accuracy Agent"
+    ],
+    "kpis": {
+      "Leakage Recovery": "90-day proof",
+      "Ancillary Yield": "Improved",
+      "Settlement Accuracy": "Higher"
+    },
+    "voice": "The Revenue Leakage Agent scans bookings, check-in records, ancillaries and settlement data. Fare class mismatches, unbilled services and no-show leakage are surfaced while revenue teams can still recover value."
+  },
+  {
+    "id": "commercial-cx",
+    "chapter": "Commercial Airlines",
+    "start": 270,
+    "end": 300,
+    "video": "commercial-airline-1.mp4",
+    "section": "Passenger CX AI",
+    "headline": "Disruption Service Moves From Reactive to Proactive",
+    "caption": "Voice, chat, loyalty and OCC signals are unified so customers receive rebooking and service guidance before they call.",
+    "agents": [
+      "AI-Native Contact Centre",
+      "Rebooking Recommendation Agent",
+      "Passenger Sentiment Agent"
+    ],
+    "kpis": {
+      "Call Deflection": "~40%",
+      "Cost-to-Serve": "-30%",
+      "NPS": "Improved"
+    },
+    "voice": "When disruption hits, passengers do not wait in blind queues. UniWeave connects reservations, loyalty, contact centre and operations, so AI agents can recommend rebooking, answer in Khmer or English, and reduce call centre pressure."
+  },
+  {
+    "id": "commercial-fuel",
+    "chapter": "Commercial Airlines",
+    "start": 300,
+    "end": 330,
+    "video": "commercial-airline-2.mp4",
+    "section": "Fuel & Carbon Intelligence",
+    "headline": "Every Flight Becomes a Fuel Optimisation Opportunity",
+    "caption": "Flight profiles, uplift, weather and route performance are analysed to reduce fuel burn and track carbon per tail and route.",
+    "agents": [
+      "Fuel Optimisation Agent",
+      "Weather Route Intelligence",
+      "CORSIA Carbon Tracker"
+    ],
+    "kpis": {
+      "Fuel Saving": "2–4%",
+      "Carbon Visibility": "Per route",
+      "Compliance": "CORSIA-ready"
+    },
+    "voice": "Fuel is one of the biggest controllable costs. AIonOS analyses climb, cruise, descent, uplift and weather signals to recommend fuel efficient options while tracking carbon output for every tail and route."
+  },
+  {
+    "id": "commercial-crew",
+    "chapter": "Commercial Airlines",
+    "start": 330,
+    "end": 360,
+    "video": "commercial-airline-3.mp4",
+    "section": "Crew & OCC AI",
+    "headline": "Crew Recovery Options Are Ranked in Real Time",
+    "caption": "Crew pairing, rest constraints and irregular operations are optimised to protect legality, cost and passenger continuity.",
+    "agents": [
+      "Crew Scheduling Agent",
+      "Irregular Ops Recovery Agent",
+      "OCC Decision Copilot"
+    ],
+    "kpis": {
+      "IROPS Cost": "~25% lower",
+      "Recovery Speed": "Faster",
+      "Crew Productivity": "Improved"
+    },
+    "voice": "Crew recovery is where complexity explodes. AIonOS ranks legal, cost-effective recovery options in real time, while Smart Axiata ensures the operating fabric stays connected across airline teams and airport partners."
+  },
+  {
+    "id": "cargo-open",
+    "chapter": "Cargo Airlines",
+    "start": 360,
+    "end": 390,
+    "video": "cargo-airline-4.mp4",
+    "section": "Cargo Airlines AI",
+    "headline": "Air Cargo Becomes Visible End to End",
+    "caption": "AIonOS and Smart Axiata connect cargo, handlers, aircraft, warehouses and road partners into one shipment intelligence layer.",
+    "agents": [
+      "Cargo Digital Twin",
+      "Shipment Visibility Agent",
+      "SMART IoT Connectivity"
+    ],
+    "kpis": {
+      "Shipment View": "Live",
+      "Chain of Custody": "Tracked",
+      "ETA": "Predicted"
+    },
+    "voice": "Cargo airlines need certainty across every handoff. Smart Axiata connects the physical network, while AIonOS turns shipment data into predicted exceptions, chain of custody and measurable service performance."
+  },
+  {
+    "id": "cargo-tracking",
+    "chapter": "Cargo Airlines",
+    "start": 390,
+    "end": 420,
+    "video": "cargo-airline-5.mp4",
+    "section": "Real-Time Tracking",
+    "headline": "Cargo Location, Condition and ETA Stay Live",
+    "caption": "IoT sensors, RFID and cargo system events are unified to monitor location, temperature, humidity, shock and predicted arrival.",
+    "agents": [
+      "Real-Time Cargo Tracking Agent",
+      "Chain of Custody Agent",
+      "ETA Prediction Agent"
+    ],
+    "kpis": {
+      "Lost Claims": "Reduced",
+      "On-time Delivery": "Improved",
+      "Customer Visibility": "Higher"
+    },
+    "voice": "The Real-Time Cargo Tracking Agent watches location, temperature, humidity and shock signals. Every handling point becomes visible, and the predicted ETA updates before customers ask where the shipment is."
+  },
+  {
+    "id": "cargo-yield",
+    "chapter": "Cargo Airlines",
+    "start": 420,
+    "end": 450,
+    "video": "cargo-airline-5.mp4",
+    "section": "Capacity Yield AI",
+    "headline": "Every Kilogram and Cubic Metre Is Optimised",
+    "caption": "Demand forecasting and load intelligence identify under-used capacity, yield dilution and ULD build improvements.",
+    "agents": [
+      "Capacity Yield Agent",
+      "ULD Load Optimiser",
+      "Revenue Dilution Monitor"
+    ],
+    "kpis": {
+      "ATK Yield": "+8–12% target",
+      "Load Factor": "Improved",
+      "Yield Leakage": "Reduced"
+    },
+    "voice": "Cargo revenue depends on using scarce capacity intelligently. AIonOS forecasts demand, optimises ULD build for weight and volume, and flags yield dilution before a low value booking consumes premium capacity."
+  },
+  {
+    "id": "cargo-cold-chain",
+    "chapter": "Cargo Airlines",
+    "start": 450,
+    "end": 480,
+    "video": "cargo-airline-4.mp4",
+    "section": "Cold Chain Intelligence",
+    "headline": "Deviation Risk Is Flagged Before Spoilage",
+    "caption": "Temperature-sensitive cargo is monitored in real time and reroute or handling recommendations are triggered before SLA breach.",
+    "agents": [
+      "Cold Chain Intelligence Agent",
+      "Perishable Risk Model",
+      "Pharma SLA Monitor"
+    ],
+    "kpis": {
+      "Spoilage Loss": "~45% lower",
+      "SLA Compliance": "Higher",
+      "Claims": "Reduced"
+    },
+    "voice": "For pharma, perishables and live cargo, the risk is not just delay. It is condition breach. AIonOS predicts cold chain deviation and recommends handling changes before the shipment loses value."
+  },
+  {
+    "id": "cargo-customs",
+    "chapter": "Cargo Airlines",
+    "start": 480,
+    "end": 510,
+    "video": "cargo-airline-5.mp4",
+    "section": "Customs & Compliance",
+    "headline": "Clearance Moves From Manual Review to Exception Handling",
+    "caption": "Shipment data is screened, classified, risk-scored and pre-populated for customs and compliance workflows.",
+    "agents": [
+      "Customs Automation Agent",
+      "HS Code Classifier",
+      "Compliance Risk Agent"
+    ],
+    "kpis": {
+      "Clearance Time": "~55% faster",
+      "Ground Dwell": "Reduced",
+      "Compliance Risk": "Lower"
+    },
+    "voice": "Customs and compliance are automated into an exception-led workflow. AIonOS screens shipment data, classifies codes, scores risk and prepares documentation so teams focus on the cases that actually need judgement."
+  },
+  {
+    "id": "cargo-intermodal",
+    "chapter": "Cargo Airlines",
+    "start": 510,
+    "end": 540,
+    "video": "cargo-airline-4.mp4",
+    "section": "Intermodal AI",
+    "headline": "Air-to-Road Handoffs Are Orchestrated Automatically",
+    "caption": "The platform matches freight to carriers, predicts delivery windows and connects shipper portals to last-mile execution.",
+    "agents": [
+      "Intermodal Orchestration Agent",
+      "Last-Mile Routing Agent",
+      "Shipper Portal Agent"
+    ],
+    "kpis": {
+      "Last-mile Cost": "~20% lower",
+      "First Attempt": "Improved",
+      "Handoff SLA": "Protected"
+    },
+    "voice": "The journey does not end at the airport. AIonOS orchestrates the air-to-road handoff, matches freight to carriers, predicts delivery windows and gives shippers one continuous view of service."
+  },
+  {
+    "id": "supply-open",
+    "chapter": "Supply Chain",
+    "start": 540,
+    "end": 570,
+    "video": "supply-chain-6.mp4",
+    "section": "Supply Chain AI",
+    "headline": "Distribution Moves From Tracking to Self-Correction",
+    "caption": "Factories, warehouses, fleets and resellers are connected into a control tower that predicts exceptions and recommends action.",
+    "agents": [
+      "Supply Chain Control Tower",
+      "SMART FWA / Private 5G",
+      "AIonOS AgentOps"
+    ],
+    "kpis": {
+      "Network View": "Connected",
+      "Exceptions": "Predicted",
+      "Actions": "Recommended"
+    },
+    "voice": "In supply chain, the goal is not another dashboard. Smart Axiata connects factories, depots and fleets, while AIonOS creates a control tower that predicts exceptions and recommends the next best action."
+  },
+  {
+    "id": "supply-warehouse",
+    "chapter": "Supply Chain",
+    "start": 570,
+    "end": 600,
+    "video": "supply-chain-7.mp4",
+    "section": "Connected Warehouse",
+    "headline": "Inventory and Dispatch Become Exception-Led",
+    "caption": "Warehouse signals drive guided picking, dispatch sequencing, replenishment and SLA risk alerts.",
+    "agents": [
+      "Warehouse Agent",
+      "Inventory Visibility Agent",
+      "Dispatch Sequencing Agent"
+    ],
+    "kpis": {
+      "Inventory Accuracy": "Higher",
+      "Pick Exceptions": "Reduced",
+      "Dispatch SLA": "Protected"
+    },
+    "voice": "The Warehouse Agent watches inventory, picking, staging and dispatch. Instead of chasing errors after shipment, teams receive exception alerts, guided actions and dispatch sequences that protect service levels."
+  },
+  {
+    "id": "supply-fleet",
+    "chapter": "Supply Chain",
+    "start": 600,
+    "end": 630,
+    "video": "supply-chain-6.mp4",
+    "section": "Fleet Routing AI",
+    "headline": "Routes Adapt to Fuel, ETA and Service Risk",
+    "caption": "Fleet telemetry and order demand are converted into dynamic routing, route adherence and delivery-window predictions.",
+    "agents": [
+      "Fleet Routing Agent",
+      "Fuel Risk Agent",
+      "ETA Prediction Agent"
+    ],
+    "kpis": {
+      "Transport Cost": "Lower",
+      "Fuel Risk": "Controlled",
+      "ETA Accuracy": "Improved"
+    },
+    "voice": "Fleet routing becomes adaptive. AIonOS uses telemetry, fuel exposure, route adherence and delivery promises to recommend route changes before the SLA fails."
+  },
+  {
+    "id": "supply-client-portal",
+    "chapter": "Supply Chain",
+    "start": 630,
+    "end": 660,
+    "video": "supply-chain-7.mp4",
+    "section": "Client Portal",
+    "headline": "Customers See SLA Risk Before Escalation",
+    "caption": "Manufacturer and distributor customers receive ETA, shipment status, proof-of-delivery and exception visibility.",
+    "agents": [
+      "Client Portal Agent",
+      "Proof-of-Delivery Integrity Agent",
+      "SLA Exception Agent"
+    ],
+    "kpis": {
+      "Escalations": "Reduced",
+      "Visibility": "End-to-end",
+      "Customer Trust": "Improved"
+    },
+    "voice": "For downstream clients, trust comes from visibility. The client portal shows ETA, shipment status, proof of delivery integrity and exception risk before customers escalate."
+  },
+  {
+    "id": "supply-margin",
+    "chapter": "Supply Chain",
+    "start": 660,
+    "end": 690,
+    "video": "supply-chain-6.mp4",
+    "section": "Margin & Reseller Resilience",
+    "headline": "Commercial Risk Is Detected Across the Route-to-Market",
+    "caption": "Price leakage, discount abuse, slow-moving SKUs and reseller churn signals are scored into recommended interventions.",
+    "agents": [
+      "Margin Control Agent",
+      "Demand Intelligence Agent",
+      "Reseller CVM Agent"
+    ],
+    "kpis": {
+      "Margin Leakage": "Flagged",
+      "Reseller Churn": "Predicted",
+      "Slow SKU Risk": "Controlled"
+    },
+    "voice": "Supply chain performance also affects margin. AIonOS detects price leakage, discount abuse, route profitability risk and reseller churn signals, then recommends targeted interventions for sales teams."
+  },
+  {
+    "id": "supply-scale",
+    "chapter": "Supply Chain",
+    "start": 690,
+    "end": 720,
+    "video": "supply-chain-7.mp4",
+    "section": "90-Day Value Sprint",
+    "headline": "Pilot Value Is Proved Before Scale",
+    "caption": "The proposition starts with selected lighthouse clients, baseline KPIs and a 90-day sprint to prove measurable outcomes.",
+    "agents": [
+      "Pilot Value Agent",
+      "KPI Baseline Agent",
+      "Scale Planning Agent"
+    ],
+    "kpis": {
+      "Pilot Window": "90 days",
+      "Use Cases": "2–3 agents",
+      "Scale Model": "Managed AI + connectivity"
+    },
+    "voice": "The GTM is simple. Select lighthouse accounts, baseline KPIs, deploy two to three agents, prove value in ninety days, then scale as a managed AI and connectivity offer for Cambodia."
+  },
+  {
+    "id": "mfg-open",
+    "chapter": "Manufacturing",
+    "start": 720,
+    "end": 750,
+    "video": "manufacturing-8.mp4",
+    "section": "Manufacturing AI",
+    "headline": "The Plant Becomes a Self-Learning Operating System",
+    "caption": "Machine, vision, operator, ERP and network data are connected into agentic correction loops.",
+    "agents": [
+      "Self-Learning Factory Agent",
+      "Plant Data Fabric",
+      "SMART Industrial Connectivity"
+    ],
+    "kpis": {
+      "Plant Data": "Connected",
+      "Correction Loop": "Active",
+      "Pilot Value": "Measurable"
+    },
+    "voice": "Manufacturing clients do not need more disconnected pilots. Smart Axiata provides resilient plant connectivity, while AIonOS turns shopfloor, ERP, WMS, IoT, CCTV and fleet signals into correction loops."
+  },
+  {
+    "id": "mfg-quality",
+    "chapter": "Manufacturing",
+    "start": 750,
+    "end": 780,
+    "video": "manufacturing-9.mp4",
+    "section": "Quality Vision AI",
+    "headline": "Defects Are Detected Before They Become Cost",
+    "caption": "Vision and production signals detect defects, wrong SKU, packaging issues and line deviations early.",
+    "agents": [
+      "Quality Vision Agent",
+      "Defect Detection Model",
+      "CAPA Trigger Agent"
+    ],
+    "kpis": {
+      "Rework / Scrap": "-15–25% target",
+      "Defect Escape": "Reduced",
+      "CAPA": "Triggered"
+    },
+    "voice": "The Quality Vision Agent detects defects, wrong SKU, packaging errors and line deviations. Suspect lots are blocked early and CAPA workflows are triggered before waste spreads across the line."
+  },
+  {
+    "id": "mfg-machine-health",
+    "chapter": "Manufacturing",
+    "start": 780,
+    "end": 810,
+    "video": "manufacturing-8.mp4",
+    "section": "Machine Health AI",
+    "headline": "Downtime Risk Is Predicted From Live Signals",
+    "caption": "Vibration, current, temperature and utilisation patterns feed failure prediction, spares reservation and maintenance scheduling.",
+    "agents": [
+      "Machine Health Agent",
+      "Failure Prediction Model",
+      "Spares Reservation Agent"
+    ],
+    "kpis": {
+      "Unplanned Downtime": "-20–35% target",
+      "Maintenance": "Predictive",
+      "Spares": "Pre-reserved"
+    },
+    "voice": "The Machine Health Agent studies vibration, current, temperature and utilisation. When risk rises, AIonOS recommends maintenance windows, reserves spares and reduces unplanned downtime."
+  },
+  {
+    "id": "mfg-operator",
+    "chapter": "Manufacturing",
+    "start": 810,
+    "end": 840,
+    "video": "manufacturing-9.mp4",
+    "section": "Operator Assist",
+    "headline": "Operators Get SOPs, Training and Escalation in Flow",
+    "caption": "Digital SOPs, shift handover summaries and escalation routing help reduce labour pressure and turnover risk.",
+    "agents": [
+      "Operator Assist Agent",
+      "SOP Copilot",
+      "Shift Handover Agent"
+    ],
+    "kpis": {
+      "Labour Productivity": "+10–20% target",
+      "Training Time": "Reduced",
+      "Escalations": "Faster"
+    },
+    "voice": "The Operator Assist Agent supports the human workforce. Digital SOPs, training copilots, shift handover summaries and escalation routing help plants manage labour shortage and turnover without losing consistency."
+  },
+  {
+    "id": "mfg-production-twin",
+    "chapter": "Manufacturing",
+    "start": 840,
+    "end": 870,
+    "video": "manufacturing-8.mp4",
+    "section": "Production Twin",
+    "headline": "WIP, Schedule and Energy Are Balanced Continuously",
+    "caption": "Production planning, WIP and energy signals are used to recommend line actions under cost, demand and resource pressure.",
+    "agents": [
+      "Production Twin Agent",
+      "WIP Optimisation Agent",
+      "Energy Intelligence Agent"
+    ],
+    "kpis": {
+      "WIP Risk": "Controlled",
+      "Schedule Adherence": "Improved",
+      "Energy Cost": "Optimised"
+    },
+    "voice": "The Production Twin Agent sees work in progress, schedule pressure, energy use and material constraints together. The result is a plant that recommends line actions instead of waiting for daily reviews."
+  },
+  {
+    "id": "mfg-platform",
+    "chapter": "Manufacturing",
+    "start": 870,
+    "end": 900,
+    "video": "manufacturing-9.mp4",
+    "section": "Agent Factory",
+    "headline": "One Governed Platform, Many Manufacturing Agents",
+    "caption": "UniStack, UniWeave, UniScale and UniProtect create a repeatable agent factory for factory, warehouse and route-to-market outcomes.",
+    "agents": [
+      "UniStack AgentOps",
+      "UniWeave Workflow Layer",
+      "UniScale Process Automation",
+      "UniProtect Governance"
+    ],
+    "kpis": {
+      "Pilot Sprawl": "Avoided",
+      "Governance": "Built-in",
+      "Scale": "Repeatable"
+    },
+    "voice": "The strategic value is repeatability. UniStack, UniWeave, UniScale and UniProtect create one governed agent factory for quality, maintenance, operators, warehouses, fleets and commercial resilience."
+  },
+  {
+    "id": "bfsi-open",
+    "chapter": "BFSI",
+    "start": 900,
+    "end": 930,
+    "video": "bfsi-10.mp4",
+    "section": "BFSI AI",
+    "headline": "Cambodian Banking Moves to AI-Grade Control",
+    "caption": "Smart Axiata and AIonOS combine mobile identity, telco signals and agentic AI workflows for digital banking outcomes.",
+    "agents": [
+      "BFSI Intelligence Layer",
+      "Smart SIM Identity",
+      "AIonOS Banking Agents"
+    ],
+    "kpis": {
+      "Banking Reach": "13.6M mobile users",
+      "Bakong Scale": "608M txns",
+      "AI Need": "Urgent"
+    },
+    "voice": "Cambodian banking is at a digital inflection point. Smart Axiata brings reach, SIM identity and mobile insight. AIonOS brings the AI agents, controls and workflows needed for banking at transaction scale."
+  },
+  {
+    "id": "bfsi-onboarding",
+    "chapter": "BFSI",
+    "start": 930,
+    "end": 960,
+    "video": "bfsi-11.mp4",
+    "section": "Digital Onboarding",
+    "headline": "Accounts Open in Minutes, Not Days",
+    "caption": "Smart Verify and AI digital onboarding reduce branch visits, paper KYC and activation delay.",
+    "agents": [
+      "Smart Verify Agent",
+      "KYC Document Agent",
+      "Liveness & Watchlist Agent"
+    ],
+    "kpis": {
+      "Account Opening": "80% faster",
+      "Branch Dependency": "Reduced",
+      "KYC Exceptions": "Focused"
+    },
+    "voice": "Slow onboarding loses customers at the door. Smart Verify confirms identity through telco signals, while AIonOS automates document checks, liveness, watchlist screening and exception review."
+  },
+  {
+    "id": "bfsi-credit",
+    "chapter": "BFSI",
+    "start": 960,
+    "end": 990,
+    "video": "bfsi-12.mp4",
+    "section": "Alternative Credit Scoring",
+    "headline": "Thin-File Customers Become Scoreable",
+    "caption": "Anonymised mobile usage, top-up, tenure and mobility patterns support credit decisions under consent and governance.",
+    "agents": [
+      "Alternative Credit Score Agent",
+      "Telco Signal Model",
+      "Explainability Agent"
+    ],
+    "kpis": {
+      "Approachable Borrowers": "+35%",
+      "Thin Files": "Scored",
+      "NPL Risk": "Lower"
+    },
+    "voice": "For customers without formal credit history, banks need alternative intelligence. AIonOS combines consented bank data with anonymised Smart mobile patterns to help risk teams score previously thin-file borrowers."
+  },
+  {
+    "id": "bfsi-fraud",
+    "chapter": "BFSI",
+    "start": 990,
+    "end": 1020,
+    "video": "bfsi-10.mp4",
+    "section": "Fraud & AML",
+    "headline": "Fraud Is Scored Before Money Moves",
+    "caption": "Transaction behaviour, location checks and relationship graphs are monitored for fraud, AML and SIM-swap risk.",
+    "agents": [
+      "Real-Time Fraud Scoring Agent",
+      "AML Graph Agent",
+      "Location Check Agent"
+    ],
+    "kpis": {
+      "Fraud Loss": "-60% target",
+      "AML Monitoring": "Real-time",
+      "SIM-Swap Risk": "Flagged"
+    },
+    "voice": "Real-time payments mean fraud can land before rules react. AIonOS scores transactions, uses graph-based AML monitoring and location checks, and gives analysts the risk story before money moves."
+  },
+  {
+    "id": "bfsi-compliance",
+    "chapter": "BFSI",
+    "start": 1020,
+    "end": 1050,
+    "video": "bfsi-11.mp4",
+    "section": "Compliance Automation",
+    "headline": "NBC Reporting Becomes Audit-Ready by Default",
+    "caption": "Suspicious transaction reports, loan decisions, KYC reviews and fraud case triage are logged, explainable and queued for human sign-off.",
+    "agents": [
+      "Compliance Reporting Agent",
+      "STR Drafting Agent",
+      "Audit Evidence Agent"
+    ],
+    "kpis": {
+      "Reporting Effort": "Lower",
+      "Audit Trail": "Complete",
+      "Human Sign-off": "Preserved"
+    },
+    "voice": "Compliance remains human accountable, but not manually assembled. AIonOS drafts suspicious transaction reports, builds audit evidence, explains decisions and queues every high-risk workflow for human sign-off."
+  },
+  {
+    "id": "bfsi-cx",
+    "chapter": "BFSI",
+    "start": 1050,
+    "end": 1080,
+    "video": "bfsi-12.mp4",
+    "section": "AI Banking CX",
+    "headline": "Banking Service Becomes 24/7 and Personalised",
+    "caption": "UniWeave powers voice, chat, app and web banking in Khmer and English while UniScale enables personalised retention and offers.",
+    "agents": [
+      "UniWeave Banking Agent",
+      "Personalisation Agent",
+      "Retention Intelligence Agent"
+    ],
+    "kpis": {
+      "24/7 Service": "Across channels",
+      "Retention Uplift": "+40% target",
+      "Cost-to-Serve": "-25–30%"
+    },
+    "voice": "The customer experience layer becomes always on. UniWeave supports service across voice, chat, app and web in Khmer and English, while UniScale turns first party and partner signals into targeted retention and growth actions."
+  }
+]
