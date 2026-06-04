@@ -1,0 +1,29 @@
+Welcome to AIonOS for Aviation. Meet the AI-native airport intelligence layer that keeps landside, terminal, airside and building systems moving as one — powered by SMART connectivity.
+
+Arrival Surge Predicted Before Congestion Forms. The Passenger Flow Agent detects an inbound surge while car park and transport agents prepare capacity before the queues become visible.
+
+Pedestrian Speed Signals Flag Peak Pressure. Real-time motion analytics detect fast-forming pressure zones and trigger preemptive queue routing before bottlenecks escalate.
+
+Crowd Heatmaps Trigger Staff Repositioning. AIonOS converts anonymous mobility signals into crowd heatmaps and automatically recommends staffing, queue routing and wayfinding changes.
+
+Terminal Operations Become Self-Aware. Inside the terminal, every gate, trolley, kiosk, wheelchair, retail zone and passenger flow becomes part of one operating model.
+
+Belt Throughput Balancing Cuts Queue Spillover. Conveyor utilization and arrival waves are synchronized to reduce claim-area buildup and improve passenger movement.
+
+Baggage Mismatch Risk Detected Early. The Baggage Intelligence Agent tracks bag movement, flags mismatch risk and alerts teams before boarding cut-off.
+
+Pre-Board Queue Segmentation Keeps Gates Fluid. The system separates boarding groups earlier and reduces congestion at gate touchpoints before final calls begin.
+
+Passenger Walk-Up Patterns Optimised. Agent-driven prompts and lane balancing smooth walk-up cadence to protect turnaround timing.
+
+Boarding Sequence Re-Optimised in Real Time. The Gate and Boarding Ops Agent monitors passenger density, protects jet bridge flow and resequences boarding to recover departure punctuality.
+
+Turnaround Risk Repaired Before It Cascades. Airside agents track GSE, monitor turnaround tasks, detect zone violations and assign the nearest crew or equipment to protect departure time.
+
+FOD Alert Dispatched in Under 30 Seconds. The FOD and Runway Safety Agent uses AI camera feeds to detect runway debris and trigger the nearest response workflow instantly.
+
+The Airport Building Becomes Self-Optimising. AI HVAC, lighting, fire safety, energy, ESG and vertical transport agents coordinate through one AI-BMS operations centre.
+
+Weather Disruption Plans Trigger Automatically. When weather risk rises, AIonOS pre-builds de-icing, gate and crew alternatives to protect network continuity.
+
+One AI-Native Airport Operating System. Smart Axiata provides the trusted connectivity fabric. AIonOS provides the intelligence layer. Together they convert airport complexity into coordinated action.

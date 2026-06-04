@@ -1,0 +1,107 @@
+
+## Airport Ecosystem
+
+Welcome to AIonOS for Aviation — Welcome to AIonOS for Aviation. Meet the AI-native airport intelligence layer that keeps landside, terminal, airside and building systems moving as one — powered by SMART connectivity.
+
+Arrival Surge Predicted Before Congestion Forms — Arrival Surge Predicted Before Congestion Forms. The Passenger Flow Agent detects an inbound surge while car park and transport agents prepare capacity before the queues become visible.
+
+Pedestrian Speed Signals Flag Peak Pressure — Pedestrian Speed Signals Flag Peak Pressure. Real-time motion analytics detect fast-forming pressure zones and trigger preemptive queue routing before bottlenecks escalate.
+
+Crowd Heatmaps Trigger Staff Repositioning — Crowd Heatmaps Trigger Staff Repositioning. AIonOS converts anonymous mobility signals into crowd heatmaps and automatically recommends staffing, queue routing and wayfinding changes.
+
+Terminal Operations Become Self-Aware — Terminal Operations Become Self-Aware. Inside the terminal, every gate, trolley, kiosk, wheelchair, retail zone and passenger flow becomes part of one operating model.
+
+Belt Throughput Balancing Cuts Queue Spillover — Belt Throughput Balancing Cuts Queue Spillover. Conveyor utilization and arrival waves are synchronized to reduce claim-area buildup and improve passenger movement.
+
+Baggage Mismatch Risk Detected Early — Baggage Mismatch Risk Detected Early. The Baggage Intelligence Agent tracks bag movement, flags mismatch risk and alerts teams before boarding cut-off.
+
+Pre-Board Queue Segmentation Keeps Gates Fluid — Pre-Board Queue Segmentation Keeps Gates Fluid. The system separates boarding groups earlier and reduces congestion at gate touchpoints before final calls begin.
+
+Passenger Walk-Up Patterns Optimised — Passenger Walk-Up Patterns Optimised. Agent-driven prompts and lane balancing smooth walk-up cadence to protect turnaround timing.
+
+Boarding Sequence Re-Optimised in Real Time — Boarding Sequence Re-Optimised in Real Time. The Gate and Boarding Ops Agent monitors passenger density, protects jet bridge flow and resequences boarding to recover departure punctuality.
+
+Turnaround Risk Repaired Before It Cascades — Turnaround Risk Repaired Before It Cascades. Airside agents track GSE, monitor turnaround tasks, detect zone violations and assign the nearest crew or equipment to protect departure time.
+
+FOD Alert Dispatched in Under 30 Seconds — FOD Alert Dispatched in Under 30 Seconds. The FOD and Runway Safety Agent uses AI camera feeds to detect runway debris and trigger the nearest response workflow instantly.
+
+The Airport Building Becomes Self-Optimising — The Airport Building Becomes Self-Optimising. AI HVAC, lighting, fire safety, energy, ESG and vertical transport agents coordinate through one AI-BMS operations centre.
+
+Weather Disruption Plans Trigger Automatically — Weather Disruption Plans Trigger Automatically. When weather risk rises, AIonOS pre-builds de-icing, gate and crew alternatives to protect network continuity.
+
+One AI-Native Airport Operating System — One AI-Native Airport Operating System. Smart Axiata provides the trusted connectivity fabric. AIonOS provides the intelligence layer. Together they convert airport complexity into coordinated action.
+
+
+## Commercial Airlines
+
+From Airline Operations to Predictive Outcomes — Commercial airlines operate on thin buffers. In this chapter, Smart Axiata provides the trusted connectivity layer, while AIonOS creates the intelligence layer across aircraft, passengers, operations and revenue.
+
+Aircraft Health Is Predicted Before AOG Risk — The Predictive Aircraft Maintenance Agent watches real-time aircraft health signals. Instead of waiting for a ground event, AIonOS flags degradation forty eight to seventy two hours ahead and prepares maintenance action before availability is lost.
+
+Leakage Is Detected While Revenue Is Still Recoverable — The Revenue Leakage Agent scans bookings, check-in records, ancillaries and settlement data. Fare class mismatches, unbilled services and no-show leakage are surfaced while revenue teams can still recover value.
+
+Disruption Service Moves From Reactive to Proactive — When disruption hits, passengers do not wait in blind queues. UniWeave connects reservations, loyalty, contact centre and operations, so AI agents can recommend rebooking, answer in Khmer or English, and reduce call centre pressure.
+
+Every Flight Becomes a Fuel Optimisation Opportunity — Fuel is one of the biggest controllable costs. AIonOS analyses climb, cruise, descent, uplift and weather signals to recommend fuel efficient options while tracking carbon output for every tail and route.
+
+Crew Recovery Options Are Ranked in Real Time — Crew recovery is where complexity explodes. AIonOS ranks legal, cost-effective recovery options in real time, while Smart Axiata ensures the operating fabric stays connected across airline teams and airport partners.
+
+
+## Cargo Airlines
+
+Air Cargo Becomes Visible End to End — Cargo airlines need certainty across every handoff. Smart Axiata connects the physical network, while AIonOS turns shipment data into predicted exceptions, chain of custody and measurable service performance.
+
+Cargo Location, Condition and ETA Stay Live — The Real-Time Cargo Tracking Agent watches location, temperature, humidity and shock signals. Every handling point becomes visible, and the predicted ETA updates before customers ask where the shipment is.
+
+Every Kilogram and Cubic Metre Is Optimised — Cargo revenue depends on using scarce capacity intelligently. AIonOS forecasts demand, optimises ULD build for weight and volume, and flags yield dilution before a low value booking consumes premium capacity.
+
+Deviation Risk Is Flagged Before Spoilage — For pharma, perishables and live cargo, the risk is not just delay. It is condition breach. AIonOS predicts cold chain deviation and recommends handling changes before the shipment loses value.
+
+Clearance Moves From Manual Review to Exception Handling — Customs and compliance are automated into an exception-led workflow. AIonOS screens shipment data, classifies codes, scores risk and prepares documentation so teams focus on the cases that actually need judgement.
+
+Air-to-Road Handoffs Are Orchestrated Automatically — The journey does not end at the airport. AIonOS orchestrates the air-to-road handoff, matches freight to carriers, predicts delivery windows and gives shippers one continuous view of service.
+
+
+## Supply Chain
+
+Distribution Moves From Tracking to Self-Correction — In supply chain, the goal is not another dashboard. Smart Axiata connects factories, depots and fleets, while AIonOS creates a control tower that predicts exceptions and recommends the next best action.
+
+Inventory and Dispatch Become Exception-Led — The Warehouse Agent watches inventory, picking, staging and dispatch. Instead of chasing errors after shipment, teams receive exception alerts, guided actions and dispatch sequences that protect service levels.
+
+Routes Adapt to Fuel, ETA and Service Risk — Fleet routing becomes adaptive. AIonOS uses telemetry, fuel exposure, route adherence and delivery promises to recommend route changes before the SLA fails.
+
+Customers See SLA Risk Before Escalation — For downstream clients, trust comes from visibility. The client portal shows ETA, shipment status, proof of delivery integrity and exception risk before customers escalate.
+
+Commercial Risk Is Detected Across the Route-to-Market — Supply chain performance also affects margin. AIonOS detects price leakage, discount abuse, route profitability risk and reseller churn signals, then recommends targeted interventions for sales teams.
+
+Pilot Value Is Proved Before Scale — The GTM is simple. Select lighthouse accounts, baseline KPIs, deploy two to three agents, prove value in ninety days, then scale as a managed AI and connectivity offer for Cambodia.
+
+
+## Manufacturing
+
+The Plant Becomes a Self-Learning Operating System — Manufacturing clients do not need more disconnected pilots. Smart Axiata provides resilient plant connectivity, while AIonOS turns shopfloor, ERP, WMS, IoT, CCTV and fleet signals into correction loops.
+
+Defects Are Detected Before They Become Cost — The Quality Vision Agent detects defects, wrong SKU, packaging errors and line deviations. Suspect lots are blocked early and CAPA workflows are triggered before waste spreads across the line.
+
+Downtime Risk Is Predicted From Live Signals — The Machine Health Agent studies vibration, current, temperature and utilisation. When risk rises, AIonOS recommends maintenance windows, reserves spares and reduces unplanned downtime.
+
+Operators Get SOPs, Training and Escalation in Flow — The Operator Assist Agent supports the human workforce. Digital SOPs, training copilots, shift handover summaries and escalation routing help plants manage labour shortage and turnover without losing consistency.
+
+WIP, Schedule and Energy Are Balanced Continuously — The Production Twin Agent sees work in progress, schedule pressure, energy use and material constraints together. The result is a plant that recommends line actions instead of waiting for daily reviews.
+
+One Governed Platform, Many Manufacturing Agents — The strategic value is repeatability. UniStack, UniWeave, UniScale and UniProtect create one governed agent factory for quality, maintenance, operators, warehouses, fleets and commercial resilience.
+
+
+## BFSI
+
+Cambodian Banking Moves to AI-Grade Control — Cambodian banking is at a digital inflection point. Smart Axiata brings reach, SIM identity and mobile insight. AIonOS brings the AI agents, controls and workflows needed for banking at transaction scale.
+
+Accounts Open in Minutes, Not Days — Slow onboarding loses customers at the door. Smart Verify confirms identity through telco signals, while AIonOS automates document checks, liveness, watchlist screening and exception review.
+
+Thin-File Customers Become Scoreable — For customers without formal credit history, banks need alternative intelligence. AIonOS combines consented bank data with anonymised Smart mobile patterns to help risk teams score previously thin-file borrowers.
+
+Fraud Is Scored Before Money Moves — Real-time payments mean fraud can land before rules react. AIonOS scores transactions, uses graph-based AML monitoring and location checks, and gives analysts the risk story before money moves.
+
+NBC Reporting Becomes Audit-Ready by Default — Compliance remains human accountable, but not manually assembled. AIonOS drafts suspicious transaction reports, builds audit evidence, explains decisions and queues every high-risk workflow for human sign-off.
+
+Banking Service Becomes 24/7 and Personalised — The customer experience layer becomes always on. UniWeave supports service across voice, chat, app and web in Khmer and English, while UniScale turns first party and partner signals into targeted retention and growth actions.

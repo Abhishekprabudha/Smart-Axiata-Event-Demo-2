@@ -1,0 +1,19 @@
+AIonOS opens a live airport intelligence layer across landside, terminal, airside and building systems, powered by SMART connectivity. This is not a collection of dashboards. It is one operating brain for the airport.
+
+The day begins with an inbound passenger surge. Before congestion is visible, the Passenger Flow Agent detects the pattern. The Smart Car Park Ops Agent balances parking demand. The Ground Transport Dispatch Agent prepares taxis, shuttles and buses before arrival pressure builds.
+
+As crowds move toward the terminal, AIonOS converts anonymous mobility signals into live heatmaps. Queue prediction, wayfinding and staff repositioning agents work together to reduce wait time, protect passenger experience and prevent bottlenecks.
+
+Inside the terminal, the operating model becomes self-aware. Asset tracking monitors trolleys, wheelchairs, kiosks, lounges and gate equipment. Retail and F&B intelligence predicts demand from dwell time, triggering replenishment before stockouts occur.
+
+At baggage, the Baggage Intelligence Agent tracks movement across belts, RFID readers and handling zones. It flags mismatch risk before boarding cut-off and recommends the fastest intervention path to reduce mishandled bags.
+
+At the gate, boarding density rises. The Gate and Boarding Ops Agent protects jet bridge flow, resequences boarding groups and updates the turnaround timeline so departure punctuality can be recovered before delay becomes irreversible.
+
+On the airside, minutes become money. GSE tracking monitors pushbacks, belt loaders, fuel trucks and service vehicles. The Aircraft Turnaround Agent detects delay risk, the Geofencing Agent protects restricted zones, and the Maintenance Crew Response Agent assigns the nearest available team.
+
+On the runway, the FOD and Runway Safety Agent scans camera feeds for debris. It detects the object, triggers an alert and dispatches the response workflow in under thirty seconds.
+
+The airport building itself is also intelligent. AI HVAC pre-cools high-density zones, intelligent lighting balances load, fire and safety AI coordinates emergency response, energy and ESG agents optimise consumption, and vertical transport agents predict lift and escalator failures.
+
+The result is one AI-native airport operating system. Smart Axiata provides the trusted connectivity fabric. AIonOS provides the intelligence layer. Together, they turn airport complexity into coordinated, predictive and measurable action.
