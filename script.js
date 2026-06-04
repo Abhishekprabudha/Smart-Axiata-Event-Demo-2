@@ -26,14 +26,25 @@ const els = {
   pauseBtn: document.getElementById('pauseBtn'),
   muteBtn: document.getElementById('muteBtn'),
   resetBtn: document.getElementById('resetBtn'),
-  throughputGraph: document.getElementById('throughputGraph'),
-  queueGraph: document.getElementById('queueGraph'),
+  telemetryGrid: document.getElementById('telemetryGrid'),
   telemetryFeed: document.getElementById('telemetryFeed'),
   modelDetails: document.getElementById('modelDetails'),
-  clock: document.getElementById('clock'),
-  metricALabel: document.getElementById('metricALabel'),
-  metricBLabel: document.getElementById('metricBLabel')
 };
+
+
+const preferredNarrationVoice = 'en-GB-RyanNeural';
+
+function normalizeVoiceName(value = '') {
+  return value.toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
+function selectNarrationVoice(voices = []) {
+  const preferred = normalizeVoiceName(preferredNarrationVoice);
+  return voices.find(v => [v.name, v.voiceURI, v.lang].some(value => normalizeVoiceName(value).includes(preferred)))
+    || voices.find(v => /ryan/i.test(`${v.name} ${v.voiceURI}`) && /^en-?gb/i.test(v.lang))
+    || voices.find(v => /^en-?gb/i.test(v.lang))
+    || voices.find(v => /Google UK English Male|Microsoft David|Daniel|Google US English|Microsoft Ravi/i.test(v.name));
+}
 
 const profiles = {
   'Airport Ecosystem': ['Airport Flow Confidence','Operational Risk', 66, 42],
@@ -110,7 +121,7 @@ function scheduleNarration(scene) {
   utterance.pitch = 0.9;
   utterance.volume = 1;
   const voices = window.speechSynthesis.getVoices();
-  const preferred = voices.find(v => /Google UK English Male|Microsoft David|Daniel|Google US English|Microsoft Ravi/i.test(v.name));
+  const preferred = selectNarrationVoice(voices);
   if (preferred) utterance.voice = preferred;
   utterance.onend = advance;
   utterance.onerror = () => {
@@ -119,27 +130,179 @@ function scheduleNarration(scene) {
   window.speechSynthesis.speak(utterance);
 }
 
-function buildSpark(svg, baseline, variance, t, queue=false) {
-  const width = 260, height = 72, points = 28;
-  let values = [];
-  for (let i = 0; i < points; i++) {
-    const phase = (i / points) * Math.PI * 2 + t * 0.85;
-    values.push(Math.max(8, Math.min(95, baseline + Math.sin(phase) * variance + Math.cos(phase * 0.7) * variance * 0.35)));
+function chartSeries(seed, baseline, variance, elapsed, points = 8) {
+  return Array.from({ length: points }, (_, i) => {
+    const phase = seed * 0.73 + i * 0.91 + elapsed * 0.12;
+    return Math.max(8, Math.min(96, baseline + Math.sin(phase) * variance + Math.cos(phase * 0.57) * variance * 0.45));
+  });
+}
+
+const chartTypes = [
+  'Column Chart',
+  'Bar Chart',
+  'Line Chart',
+  'Doughnut Chart',
+  'Area Chart',
+  'XY Scatter Chart',
+  'Bubble Chart',
+  'Radar Chart',
+  'Treemap Chart',
+  'Histogram',
+  'Pareto Chart',
+  'Waterfall Chart',
+  'Funnel Chart',
+  'Combo Chart',
+  'Sparkline'
+];
+
+function pointsPath(values, width, height, inset = 8) {
+  const step = (width - inset * 2) / Math.max(1, values.length - 1);
+  return values.map((v, i) => `${i === 0 ? 'M' : 'L'} ${inset + i * step} ${height - inset - (v / 100) * (height - inset * 2)}`).join(' ');
+}
+
+function polarPoint(cx, cy, radius, value, index, total) {
+  const angle = (Math.PI * 2 * index / total) - Math.PI / 2;
+  const distance = radius * (value / 100);
+  return `${cx + Math.cos(angle) * distance},${cy + Math.sin(angle) * distance}`;
+}
+
+function renderChartSvg(type, values, accentClass, elapsed, seed) {
+  const width = 260, height = 82, inset = 8;
+  const maxBar = Math.max(...values, 1);
+  const grid = '<line class="grid" x1="0" y1="24" x2="260" y2="24"></line><line class="grid" x1="0" y1="58" x2="260" y2="58"></line>';
+
+  if (type === 'Column Chart' || type === 'Histogram') {
+    const gap = type === 'Histogram' ? 1 : 6;
+    const barWidth = (width - 24 - gap * (values.length - 1)) / values.length;
+    const bars = values.map((v, i) => `<rect class="bar" x="${12 + i * (barWidth + gap)}" y="${height - inset - (v / maxBar) * 62}" width="${barWidth}" height="${(v / maxBar) * 62}"></rect>`).join('');
+    return `${grid}${bars}`;
   }
-  const step = width / (points - 1);
-  const path = values.map((v, i) => `${i === 0 ? 'M' : 'L'} ${i * step} ${height - (v / 100) * height}`).join(' ');
-  const bars = values.filter((_, i) => i % 2 === 0).map((v, i) => `<rect class="bar" x="${i * 19}" y="${height - (v / 100) * height}" width="12" height="${(v / 100) * height}"></rect>`).join('');
-  const dots = values.filter((_, i) => i % 3 === 0).map((v, i) => `<circle class="point" cx="${i * 3 * step}" cy="${height - (v / 100) * height}" r="2.1"></circle>`).join('');
-  svg.setAttribute('class', `spark ${queue ? 'queue' : ''}`);
-  svg.innerHTML = `<line class="grid" x1="0" y1="18" x2="260" y2="18"></line><line class="grid" x1="0" y1="54" x2="260" y2="54"></line>${bars}<path class="line" d="${path}"></path>${dots}`;
+
+  if (type === 'Bar Chart') {
+    const barHeight = 9;
+    const bars = values.slice(0, 6).map((v, i) => `<rect class="bar" x="10" y="${10 + i * 12}" width="${(v / maxBar) * 224}" height="${barHeight}"></rect><text class="axis-label" x="240" y="${18 + i * 12}">${Math.round(v)}</text>`).join('');
+    return bars;
+  }
+
+  if (type === 'Line Chart' || type === 'Sparkline') {
+    const path = pointsPath(values, width, height, inset);
+    const dots = values.map((v, i) => {
+      const x = inset + i * ((width - inset * 2) / (values.length - 1));
+      const y = height - inset - (v / 100) * (height - inset * 2);
+      return `<circle class="point" cx="${x}" cy="${y}" r="2.1"></circle>`;
+    }).join('');
+    return `${grid}<path class="line" d="${path}"></path>${dots}`;
+  }
+
+  if (type === 'Area Chart') {
+    const path = pointsPath(values, width, height, inset);
+    const area = `${path} L ${width - inset} ${height - inset} L ${inset} ${height - inset} Z`;
+    return `${grid}<path class="area" d="${area}"></path><path class="line" d="${path}"></path>`;
+  }
+
+  if (type === 'Doughnut Chart') {
+    const total = values.slice(0, 4).reduce((a, b) => a + b, 0);
+    let offset = 0;
+    const rings = values.slice(0, 4).map((v, i) => {
+      const dash = v / total * 100;
+      const circle = `<circle class="donut-segment segment-${i}" cx="130" cy="41" r="27" pathLength="100" stroke-dasharray="${dash} ${100 - dash}" stroke-dashoffset="${-offset}" />`;
+      offset += dash;
+      return circle;
+    }).join('');
+    return `<circle class="donut-track" cx="130" cy="41" r="27" />${rings}<text class="center-value" x="130" y="46">${Math.round(values[0])}%</text>`;
+  }
+
+  if (type === 'XY Scatter Chart') {
+    return values.map((v, i) => {
+      const x = 14 + i * 31 + Math.sin(elapsed * 0.3 + i) * 5;
+      const y = height - 10 - (v / 100) * 64;
+      return `<circle class="point" cx="${x}" cy="${y}" r="3"></circle>`;
+    }).join('') + `<path class="trend" d="M 12 ${height - 20} L 246 18"></path>`;
+  }
+
+  if (type === 'Bubble Chart') {
+    return values.slice(0, 7).map((v, i) => {
+      const x = 22 + i * 35;
+      const y = height - 12 - (v / 100) * 58;
+      const r = 4 + ((values[(i + 2) % values.length] + seed) % 16) / 2;
+      return `<circle class="bubble" cx="${x}" cy="${y}" r="${r}"></circle>`;
+    }).join('');
+  }
+
+  if (type === 'Radar Chart') {
+    const radarValues = values.slice(0, 6);
+    const polygon = radarValues.map((v, i) => polarPoint(130, 41, 32, v, i, radarValues.length)).join(' ');
+    const frame = [25, 50, 75, 100].map(r => `<polygon class="radar-grid" points="${radarValues.map((_, i) => polarPoint(130, 41, 32, r, i, radarValues.length)).join(' ')}"></polygon>`).join('');
+    return `${frame}<polygon class="radar-area" points="${polygon}"></polygon>`;
+  }
+
+  if (type === 'Treemap Chart') {
+    const sorted = values.slice(0, 5).sort((a, b) => b - a);
+    let x = 8;
+    return sorted.map((v, i) => {
+      const w = Math.max(26, (v / sorted.reduce((a, b) => a + b, 0)) * 238);
+      const rect = `<rect class="tree tree-${i}" x="${x}" y="12" width="${Math.min(w, 252 - x)}" height="58" rx="5"></rect>`;
+      x += Math.min(w, 252 - x) + 3;
+      return rect;
+    }).join('');
+  }
+
+  if (type === 'Pareto Chart' || type === 'Combo Chart') {
+    const sorted = type === 'Pareto Chart' ? values.slice(0, 7).sort((a, b) => b - a) : values.slice(0, 7);
+    const barWidth = 20;
+    let cumulative = 0;
+    const total = sorted.reduce((a, b) => a + b, 0);
+    const bars = sorted.map((v, i) => `<rect class="bar" x="${16 + i * 34}" y="${height - inset - (v / maxBar) * 56}" width="${barWidth}" height="${(v / maxBar) * 56}"></rect>`).join('');
+    const lineValues = sorted.map(v => (cumulative += v) / total * 100);
+    return `${bars}<path class="line secondary" d="${pointsPath(lineValues, 238, height, inset).replaceAll('M 8', 'M 16')}"></path>`;
+  }
+
+  if (type === 'Waterfall Chart') {
+    let running = 30;
+    return values.slice(0, 7).map((v, i) => {
+      const delta = (v - 50) / 3;
+      const next = Math.max(8, Math.min(92, running + delta));
+      const y = height - inset - (Math.max(running, next) / 100) * 60;
+      const h = Math.max(5, Math.abs(next - running) / 100 * 60);
+      running = next;
+      return `<rect class="${delta >= 0 ? 'bar' : 'bar negative'}" x="${16 + i * 33}" y="${y}" width="22" height="${h}"></rect>`;
+    }).join('');
+  }
+
+  if (type === 'Funnel Chart') {
+    return values.slice(0, 5).sort((a, b) => b - a).map((v, i) => {
+      const w = 56 + (v / maxBar) * 168;
+      const x = (width - w) / 2;
+      return `<rect class="bar" x="${x}" y="${9 + i * 14}" width="${w}" height="10" rx="5"></rect>`;
+    }).join('');
+  }
+
+  return `${grid}<path class="line" d="${pointsPath(values, width, height, inset)}"></path>`;
+}
+
+function agentChartType(scene, agentIndex) {
+  const sceneIndex = Math.max(0, scenes.findIndex(s => s.id === scene.id));
+  return chartTypes[(sceneIndex * 3 + agentIndex) % chartTypes.length];
+}
+
+function renderAgentCharts(scene, elapsed, profile) {
+  const agents = scene.agents || [];
+  els.telemetryGrid.innerHTML = agents.map((agent, index) => {
+    const type = agentChartType(scene, index);
+    const baseline = Math.min(88, profile[2] + index * 4 - (index % 2) * 8);
+    const values = chartSeries(scene.id.length + index * 5, baseline, 13 + index * 2, elapsed, type === 'Radar Chart' ? 6 : 8);
+    const svg = renderChartSvg(type, values, index % 2 ? 'warm' : 'cool', elapsed, index + scene.id.length);
+    return `<div class="graph-card ${index % 2 ? 'warm' : 'cool'}">
+      <div class="graph-label">${agent}</div>
+      <div class="chart-type">${type}</div>
+      <svg class="spark" viewBox="0 0 260 82" preserveAspectRatio="none">${svg}</svg>
+    </div>`;
+  }).join('');
 }
 
 function renderTelemetry(scene, elapsed) {
   const p = profiles[scene.chapter] || profiles['Airport Ecosystem'];
-  els.metricALabel.textContent = p[0];
-  els.metricBLabel.textContent = p[1];
-  buildSpark(els.throughputGraph, p[2], 10, elapsed, false);
-  buildSpark(els.queueGraph, p[3], 12, elapsed + 2, true);
+  renderAgentCharts(scene, elapsed, p);
   const kpis = Object.entries(scene.kpis || {});
   els.modelDetails.innerHTML = `
     <div class="detail-row"><span class="detail-title">Chapter</span> ${scene.chapter}</div>
@@ -148,14 +311,13 @@ function renderTelemetry(scene, elapsed) {
   els.telemetryFeed.innerHTML = [
     `${scene.section} signal fused`,
     `${scene.agents?.[0] || 'Primary agent'} active`,
-    `Recommendation loop refreshed at T+${fmt(elapsed)}`
+    `Recommendation loop refreshed`
   ].map((line, i) => `<div class="feed-row"><span class="feed-tag">${i+1}</span><span class="feed-value">${line}</span></div>`).join('');
 }
 
 
 function updateProgress(elapsed) {
   els.progress.style.width = `${Math.min(100, elapsed / totalDuration * 100)}%`;
-  els.clock.textContent = `${fmt(elapsed)} / ${fmt(totalDuration)}`;
 }
 
 function renderScene(scene, elapsed, options = {}) {
