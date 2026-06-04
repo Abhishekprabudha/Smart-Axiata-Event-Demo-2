@@ -25,7 +25,8 @@ button { border: 0; border-radius: 999px; padding: 13px 18px; font-weight: 900; 
 button.ghost { background: rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2); box-shadow:none; }
 /* Move the whole Active AI Agents widget up exactly one CSS inch from its original 118px offset without resizing it. */
 .agent-panel { position:absolute; top: calc(118px - 1in); right: 36px; width: 360px; max-height: 270px; overflow: hidden; z-index:3; background: var(--panel); border:1px solid rgba(255,255,255,.16); border-radius: 20px; padding: 16px; backdrop-filter: blur(12px); }
-.telemetry-panel { position:absolute; top: 126px; left: 36px; width: 430px; z-index:3; background: transparent; border: 1px solid transparent; border-radius: 24px; padding: 18px; }
+/* Move the whole telemetry cards widget up exactly half a CSS inch from its original 126px top offset without resizing it. */
+.telemetry-panel { position:absolute; top: calc(126px - 0.5in); left: 36px; width: 430px; z-index:3; background: transparent; border: 1px solid transparent; border-radius: 24px; padding: 18px; }
 .telemetry-grid { display:grid; grid-template-columns: 1fr; gap: 8px; }
 .graph-card { background: rgba(0,0,0,.12); border: 1px solid rgba(255,255,255,.2); border-radius: 14px; padding: 8px 10px; }
 .graph-label { font-size: 10px; text-transform: uppercase; letter-spacing: .13em; color: var(--muted); font-weight: 900; margin-bottom: 3px; }

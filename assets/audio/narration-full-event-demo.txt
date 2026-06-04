@@ -49,17 +49,17 @@ Crew Recovery Options Are Ranked in Real Time — Crew recovery is where complex
 
 ## Cargo Airlines
 
-Air Cargo Becomes Visible End to End — Cargo airlines need certainty across every handoff. Smart Axiata connects the physical network, while AIonOS turns shipment data into predicted exceptions, chain of custody and measurable service performance.
+Air Cargo Becomes Visible End to End — Smart Axiata plays a pivotal role in IoT connectivity by giving cargo airlines a trusted, always-on fabric across aircraft loading, ground handlers, warehouses and road partners. As the Malaysian Airlines aircraft loading video starts, the Cargo Digital Twin watches the operation end to end, the Shipment Visibility Agent turns every cargo movement into a live status signal, and SMART IoT Connectivity keeps the shipment intelligence layer online.
 
-Cargo Location, Condition and ETA Stay Live — The Real-Time Cargo Tracking Agent watches location, temperature, humidity and shock signals. Every handling point becomes visible, and the predicted ETA updates before customers ask where the shipment is.
+Cargo Location, Condition and ETA Stay Live — Now the IoT tracking video begins. The Real-Time Cargo Tracking Agent watches location, temperature, humidity and shock signals, the Chain of Custody Agent verifies each handling milestone, and the ETA Prediction Agent updates arrival confidence before customers ask where the shipment is.
 
-Every Kilogram and Cubic Metre Is Optimised — Cargo revenue depends on using scarce capacity intelligently. AIonOS forecasts demand, optimises ULD build for weight and volume, and flags yield dilution before a low value booking consumes premium capacity.
+Every Kilogram and Cubic Metre Is Optimised — Cargo revenue depends on using scarce capacity intelligently. The Capacity Yield Agent forecasts demand and yield opportunity, the ULD Load Optimiser balances weight and volume, and the Revenue Dilution Monitor flags low value bookings before they consume premium capacity.
 
-Deviation Risk Is Flagged Before Spoilage — For pharma, perishables and live cargo, the risk is not just delay. It is condition breach. AIonOS predicts cold chain deviation and recommends handling changes before the shipment loses value.
+Deviation Risk Is Flagged Before Spoilage — For pharma, perishables and live cargo, the risk is not just delay. The Cold Chain Intelligence Agent monitors condition changes in real time, the Perishable Risk Model predicts spoilage exposure, and the Pharma SLA Monitor recommends handling changes before the shipment loses value.
 
-Clearance Moves From Manual Review to Exception Handling — Customs and compliance are automated into an exception-led workflow. AIonOS screens shipment data, classifies codes, scores risk and prepares documentation so teams focus on the cases that actually need judgement.
+Clearance Moves From Manual Review to Exception Handling — Customs and compliance move into an exception-led workflow. The Customs Automation Agent prepares clearance tasks, the HS Code Classifier improves classification accuracy, and the Compliance Risk Agent scores shipment risk so teams focus on the cases that actually need judgement.
 
-Air-to-Road Handoffs Are Orchestrated Automatically — The journey does not end at the airport. AIonOS orchestrates the air-to-road handoff, matches freight to carriers, predicts delivery windows and gives shippers one continuous view of service.
+Air-to-Road Handoffs Are Orchestrated Automatically — The journey does not end at the airport. The Intermodal Orchestration Agent manages the air-to-road handoff, the Last-Mile Routing Agent matches freight to delivery windows, and the Shipper Portal Agent gives customers one continuous view of service.
 
 
 ## Supply Chain
