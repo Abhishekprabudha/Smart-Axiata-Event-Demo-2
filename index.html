@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AIonOS x SMART Multi-Sector Event Demo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="stage">
+    <video id="bgVideo" class="bg-video" autoplay muted loop playsinline></video>
+    <div class="wash"></div>
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">SMART AXIATA × AIonOS</div>
+        <h1>AI Transformation Event Demo</h1>
+      </div>
+      <div id="clock" class="clock">00:00 / 18:00</div>
+    </header>
+
+    <aside class="chapter-panel">
+      <div class="panel-title">Demo Chapters</div>
+      <div id="chapters" class="chapters"></div>
+    </aside>
+
+    <section class="hero-card">
+      <div id="chapter" class="chapter-name">Airport Ecosystem</div>
+      <div id="section" class="section">AIonOS x SMART Aviation AI</div>
+      <h2 id="headline">Unified Airport Command Centre</h2>
+      <p id="caption">AIonOS opens a live airport intelligence layer across landside, terminal, airside and building systems.</p>
+      <div class="controls">
+        <button id="playBtn">▶ Start narrated demo</button>
+        <button id="pauseBtn" class="ghost">Pause</button>
+        <button id="muteBtn" class="ghost">Voice: On</button>
+        <button id="resetBtn" class="ghost">Reset</button>
+      </div>
+    </section>
+
+    <aside class="agent-panel">
+      <div class="panel-title">Active AI Agents</div>
+      <div id="agents" class="agents"></div>
+    </aside>
+
+    <aside class="telemetry-panel" aria-live="polite">
+      <div class="panel-title">Live Agent Telemetry</div>
+      <div class="telemetry-grid">
+        <div class="graph-card">
+          <div id="metricALabel" class="graph-label">Inference Throughput</div>
+          <svg id="throughputGraph" class="spark" viewBox="0 0 260 72" preserveAspectRatio="none"></svg>
+        </div>
+        <div class="graph-card">
+          <div id="metricBLabel" class="graph-label">Risk Pressure</div>
+          <svg id="queueGraph" class="spark queue" viewBox="0 0 260 72" preserveAspectRatio="none"></svg>
+        </div>
+      </div>
+      <div id="modelDetails" class="model-details"></div>
+      <div id="telemetryFeed" class="telemetry-feed"></div>
+    </aside>
+
+    <section class="kpi-panel">
+      <div id="kpis" class="kpis"></div>
+    </section>
+
+    <section class="timeline">
+      <div id="progress" class="progress"></div>
+      <div class="ticks">
+        <span>Airport</span><span>Commercial</span><span>Cargo</span><span>Supply Chain</span><span>Manufacturing</span><span>BFSI</span>
+      </div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

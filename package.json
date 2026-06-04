@@ -1,0 +1,12 @@
+{
+  "name": "aionos-smart-airport-agent-demo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "serve": "python3 -m http.server 8000",
+    "narration": "python3 scripts/generate_webpage_narration.py",
+    "render": "python3 scripts/render_mp4.py",
+    "diagnostics": "python3 scripts/diagnostics.py",
+    "narration:webpage": "python3 scripts/generate_webpage_narration.py"
+  }
+}
