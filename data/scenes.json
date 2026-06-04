@@ -336,7 +336,7 @@
       "Revenue Risk": "Scanning",
       "Ops Layer": "Connected"
     },
-    "voice": "Commercial airlines operate on thin buffers. In this chapter, Smart Axiata provides the trusted connectivity layer, while AIonOS creates the intelligence layer across aircraft, passengers, operations and revenue."
+    "voice": "Commercial airlines operate on thin buffers. Smart Axiata provides the trusted connectivity layer, while AIonOS creates the intelligence layer across aircraft, passengers, operations and revenue."
   },
   {
     "id": "commercial-maintenance",
@@ -451,7 +451,7 @@
     "video": "cargo-airline-4.mp4",
     "section": "Cargo Airlines AI",
     "headline": "Air Cargo Becomes Visible End to End",
-    "caption": "The Malaysian Airlines aircraft loading sequence opens the chapter, showing how Smart Axiata IoT connectivity links cargo, handlers, aircraft, warehouses and road partners into one shipment intelligence layer.",
+    "caption": "The Malaysian Airlines aircraft loading sequence shows how Smart Axiata IoT connectivity links cargo, handlers, aircraft, warehouses and road partners into one shipment intelligence layer.",
     "agents": [
       "Cargo Digital Twin",
       "Shipment Visibility Agent",
@@ -462,7 +462,7 @@
       "Chain of Custody": "Tracked",
       "ETA": "Predicted"
     },
-    "voice": "Smart Axiata plays a pivotal role in IoT connectivity by giving cargo airlines a trusted, always-on fabric across aircraft loading, ground handlers, warehouses and road partners. As the Malaysian Airlines aircraft loading video starts, the Cargo Digital Twin watches the operation end to end, the Shipment Visibility Agent turns every cargo movement into a live status signal, and SMART IoT Connectivity keeps the shipment intelligence layer online."
+    "voice": "Smart Axiata plays a pivotal role in IoT connectivity by giving cargo airlines a trusted, always-on fabric across aircraft loading, ground handlers, warehouses and road partners. As the Malaysian Airlines aircraft loading sequence starts, the Cargo Digital Twin watches the operation end to end, the Shipment Visibility Agent turns every cargo movement into a live status signal, and SMART IoT Connectivity keeps the shipment intelligence layer online."
   },
   {
     "id": "cargo-tracking",
@@ -472,7 +472,7 @@
     "video": "cargo-airline-5.mp4",
     "section": "Real-Time Tracking",
     "headline": "Cargo Location, Condition and ETA Stay Live",
-    "caption": "The IoT tracking video then takes over, unifying sensors, RFID and cargo system events to monitor location, temperature, humidity, shock and predicted arrival.",
+    "caption": "The IoT tracking sequence unifies sensors, RFID and cargo system events to monitor location, temperature, humidity, shock and predicted arrival.",
     "agents": [
       "Real-Time Cargo Tracking Agent",
       "Chain of Custody Agent",
@@ -483,7 +483,7 @@
       "On-time Delivery": "Improved",
       "Customer Visibility": "Higher"
     },
-    "voice": "Now the IoT tracking video begins. The Real-Time Cargo Tracking Agent watches location, temperature, humidity and shock signals, the Chain of Custody Agent verifies each handling milestone, and the ETA Prediction Agent updates arrival confidence before customers ask where the shipment is."
+    "voice": "The IoT tracking sequence now takes over. The Real-Time Cargo Tracking Agent watches location, temperature, humidity and shock signals, the Chain of Custody Agent verifies each handling milestone, and the ETA Prediction Agent updates arrival confidence before customers ask where the shipment is."
   },
   {
     "id": "cargo-yield",
@@ -935,7 +935,7 @@
     "video": "bfsi-12.mp4",
     "section": "AI Banking CX",
     "headline": "Banking Service Becomes 24/7 and Personalised",
-    "caption": "UniWeave powers voice, chat, app and web banking in Khmer and English while UniScale enables personalised retention and offers.",
+    "caption": "UniWeave powers voice, chat, app and web banking in Khmer and English while UniScale enables personalised retention and offers, closing with one connected AI operating layer across aviation, cargo, supply chain, manufacturing and banking.",
     "agents": [
       "UniWeave Banking Agent",
       "Personalisation Agent",
@@ -946,6 +946,6 @@
       "Retention Uplift": "+40% target",
       "Cost-to-Serve": "-25–30%"
     },
-    "voice": "The customer experience layer becomes always on. UniWeave supports service across voice, chat, app and web in Khmer and English, while UniScale turns first party and partner signals into targeted retention and growth actions."
+    "voice": "The customer experience layer becomes always on. UniWeave supports service across voice, chat, app and web in Khmer and English, while UniScale turns first party and partner signals into targeted retention and growth actions. The story closes with a single message: Smart Axiata provides the trusted digital fabric, AIonOS turns it into governed agentic intelligence, and together they help every sector move from reactive operations to predictive outcomes."
   }
 ]

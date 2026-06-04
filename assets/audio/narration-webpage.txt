@@ -40,9 +40,9 @@ Every Flight Becomes a Fuel Optimisation Opportunity. Flight profiles, uplift, w
 
 Crew Recovery Options Are Ranked in Real Time. Crew pairing, rest constraints and irregular operations are optimised to protect legality, cost and passenger continuity.
 
-Air Cargo Becomes Visible End to End. The Malaysian Airlines aircraft loading sequence opens the chapter, showing how Smart Axiata IoT connectivity links cargo, handlers, aircraft, warehouses and road partners into one shipment intelligence layer.
+Air Cargo Becomes Visible End to End. The Malaysian Airlines aircraft loading sequence shows how Smart Axiata IoT connectivity links cargo, handlers, aircraft, warehouses and road partners into one shipment intelligence layer.
 
-Cargo Location, Condition and ETA Stay Live. The IoT tracking video then takes over, unifying sensors, RFID and cargo system events to monitor location, temperature, humidity, shock and predicted arrival.
+Cargo Location, Condition and ETA Stay Live. The IoT tracking sequence unifies sensors, RFID and cargo system events to monitor location, temperature, humidity, shock and predicted arrival.
 
 Every Kilogram and Cubic Metre Is Optimised. Demand forecasting and load intelligence identify under-used capacity, yield dilution and ULD build improvements.
 
@@ -86,4 +86,4 @@ Fraud Is Scored Before Money Moves. Transaction behaviour, location checks and r
 
 NBC Reporting Becomes Audit-Ready by Default. Suspicious transaction reports, loan decisions, KYC reviews and fraud case triage are logged, explainable and queued for human sign-off.
 
-Banking Service Becomes 24/7 and Personalised. UniWeave powers voice, chat, app and web banking in Khmer and English while UniScale enables personalised retention and offers.
+Banking Service Becomes 24/7 and Personalised. UniWeave powers voice, chat, app and web banking in Khmer and English while UniScale enables personalised retention and offers, closing with one connected AI operating layer across aviation, cargo, supply chain, manufacturing and banking.
