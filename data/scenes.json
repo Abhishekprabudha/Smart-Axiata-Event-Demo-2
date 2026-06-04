@@ -451,7 +451,7 @@
     "video": "cargo-airline-4.mp4",
     "section": "Cargo Airlines AI",
     "headline": "Air Cargo Becomes Visible End to End",
-    "caption": "AIonOS and Smart Axiata connect cargo, handlers, aircraft, warehouses and road partners into one shipment intelligence layer.",
+    "caption": "The Malaysian Airlines aircraft loading sequence opens the chapter, showing how Smart Axiata IoT connectivity links cargo, handlers, aircraft, warehouses and road partners into one shipment intelligence layer.",
     "agents": [
       "Cargo Digital Twin",
       "Shipment Visibility Agent",
@@ -462,7 +462,7 @@
       "Chain of Custody": "Tracked",
       "ETA": "Predicted"
     },
-    "voice": "Cargo airlines need certainty across every handoff. Smart Axiata connects the physical network, while AIonOS turns shipment data into predicted exceptions, chain of custody and measurable service performance."
+    "voice": "Smart Axiata plays a pivotal role in IoT connectivity by giving cargo airlines a trusted, always-on fabric across aircraft loading, ground handlers, warehouses and road partners. As the Malaysian Airlines aircraft loading video starts, the Cargo Digital Twin watches the operation end to end, the Shipment Visibility Agent turns every cargo movement into a live status signal, and SMART IoT Connectivity keeps the shipment intelligence layer online."
   },
   {
     "id": "cargo-tracking",
@@ -472,7 +472,7 @@
     "video": "cargo-airline-5.mp4",
     "section": "Real-Time Tracking",
     "headline": "Cargo Location, Condition and ETA Stay Live",
-    "caption": "IoT sensors, RFID and cargo system events are unified to monitor location, temperature, humidity, shock and predicted arrival.",
+    "caption": "The IoT tracking video then takes over, unifying sensors, RFID and cargo system events to monitor location, temperature, humidity, shock and predicted arrival.",
     "agents": [
       "Real-Time Cargo Tracking Agent",
       "Chain of Custody Agent",
@@ -483,7 +483,7 @@
       "On-time Delivery": "Improved",
       "Customer Visibility": "Higher"
     },
-    "voice": "The Real-Time Cargo Tracking Agent watches location, temperature, humidity and shock signals. Every handling point becomes visible, and the predicted ETA updates before customers ask where the shipment is."
+    "voice": "Now the IoT tracking video begins. The Real-Time Cargo Tracking Agent watches location, temperature, humidity and shock signals, the Chain of Custody Agent verifies each handling milestone, and the ETA Prediction Agent updates arrival confidence before customers ask where the shipment is."
   },
   {
     "id": "cargo-yield",
@@ -504,7 +504,7 @@
       "Load Factor": "Improved",
       "Yield Leakage": "Reduced"
     },
-    "voice": "Cargo revenue depends on using scarce capacity intelligently. AIonOS forecasts demand, optimises ULD build for weight and volume, and flags yield dilution before a low value booking consumes premium capacity."
+    "voice": "Cargo revenue depends on using scarce capacity intelligently. The Capacity Yield Agent forecasts demand and yield opportunity, the ULD Load Optimiser balances weight and volume, and the Revenue Dilution Monitor flags low value bookings before they consume premium capacity."
   },
   {
     "id": "cargo-cold-chain",
@@ -525,7 +525,7 @@
       "SLA Compliance": "Higher",
       "Claims": "Reduced"
     },
-    "voice": "For pharma, perishables and live cargo, the risk is not just delay. It is condition breach. AIonOS predicts cold chain deviation and recommends handling changes before the shipment loses value."
+    "voice": "For pharma, perishables and live cargo, the risk is not just delay. The Cold Chain Intelligence Agent monitors condition changes in real time, the Perishable Risk Model predicts spoilage exposure, and the Pharma SLA Monitor recommends handling changes before the shipment loses value."
   },
   {
     "id": "cargo-customs",
@@ -546,7 +546,7 @@
       "Ground Dwell": "Reduced",
       "Compliance Risk": "Lower"
     },
-    "voice": "Customs and compliance are automated into an exception-led workflow. AIonOS screens shipment data, classifies codes, scores risk and prepares documentation so teams focus on the cases that actually need judgement."
+    "voice": "Customs and compliance move into an exception-led workflow. The Customs Automation Agent prepares clearance tasks, the HS Code Classifier improves classification accuracy, and the Compliance Risk Agent scores shipment risk so teams focus on the cases that actually need judgement."
   },
   {
     "id": "cargo-intermodal",
@@ -567,7 +567,7 @@
       "First Attempt": "Improved",
       "Handoff SLA": "Protected"
     },
-    "voice": "The journey does not end at the airport. AIonOS orchestrates the air-to-road handoff, matches freight to carriers, predicts delivery windows and gives shippers one continuous view of service."
+    "voice": "The journey does not end at the airport. The Intermodal Orchestration Agent manages the air-to-road handoff, the Last-Mile Routing Agent matches freight to delivery windows, and the Shipper Portal Agent gives customers one continuous view of service."
   },
   {
     "id": "supply-open",
