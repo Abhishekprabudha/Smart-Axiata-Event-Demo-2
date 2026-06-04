@@ -27,3 +27,63 @@ The Airport Building Becomes Self-Optimising. AI HVAC, lighting, fire safety, en
 Weather Disruption Plans Trigger Automatically. When weather risk rises, AIonOS pre-builds de-icing, gate and crew alternatives to protect network continuity.
 
 One AI-Native Airport Operating System. Smart Axiata provides the trusted connectivity fabric. AIonOS provides the intelligence layer. Together they convert airport complexity into coordinated action.
+
+From Airline Operations to Predictive Outcomes. AIonOS turns airline data, aircraft signals and passenger interactions into a live operating layer for Smart Axiata aviation clients.
+
+Aircraft Health Is Predicted Before AOG Risk. Sensor streams from vibration, oil, pressure and temperature are converted into component risk scores and proactive work orders.
+
+Leakage Is Detected While Revenue Is Still Recoverable. PSS, DCS, ancillary and interline patterns are monitored continuously to surface unbilled services and fare mismatches.
+
+Disruption Service Moves From Reactive to Proactive. Voice, chat, loyalty and OCC signals are unified so customers receive rebooking and service guidance before they call.
+
+Every Flight Becomes a Fuel Optimisation Opportunity. Flight profiles, uplift, weather and route performance are analysed to reduce fuel burn and track carbon per tail and route.
+
+Crew Recovery Options Are Ranked in Real Time. Crew pairing, rest constraints and irregular operations are optimised to protect legality, cost and passenger continuity.
+
+Air Cargo Becomes Visible End to End. AIonOS and Smart Axiata connect cargo, handlers, aircraft, warehouses and road partners into one shipment intelligence layer.
+
+Cargo Location, Condition and ETA Stay Live. IoT sensors, RFID and cargo system events are unified to monitor location, temperature, humidity, shock and predicted arrival.
+
+Every Kilogram and Cubic Metre Is Optimised. Demand forecasting and load intelligence identify under-used capacity, yield dilution and ULD build improvements.
+
+Deviation Risk Is Flagged Before Spoilage. Temperature-sensitive cargo is monitored in real time and reroute or handling recommendations are triggered before SLA breach.
+
+Clearance Moves From Manual Review to Exception Handling. Shipment data is screened, classified, risk-scored and pre-populated for customs and compliance workflows.
+
+Air-to-Road Handoffs Are Orchestrated Automatically. The platform matches freight to carriers, predicts delivery windows and connects shipper portals to last-mile execution.
+
+Distribution Moves From Tracking to Self-Correction. Factories, warehouses, fleets and resellers are connected into a control tower that predicts exceptions and recommends action.
+
+Inventory and Dispatch Become Exception-Led. Warehouse signals drive guided picking, dispatch sequencing, replenishment and SLA risk alerts.
+
+Routes Adapt to Fuel, ETA and Service Risk. Fleet telemetry and order demand are converted into dynamic routing, route adherence and delivery-window predictions.
+
+Customers See SLA Risk Before Escalation. Manufacturer and distributor customers receive ETA, shipment status, proof-of-delivery and exception visibility.
+
+Commercial Risk Is Detected Across the Route-to-Market. Price leakage, discount abuse, slow-moving SKUs and reseller churn signals are scored into recommended interventions.
+
+Pilot Value Is Proved Before Scale. The proposition starts with selected lighthouse clients, baseline KPIs and a 90-day sprint to prove measurable outcomes.
+
+The Plant Becomes a Self-Learning Operating System. Machine, vision, operator, ERP and network data are connected into agentic correction loops.
+
+Defects Are Detected Before They Become Cost. Vision and production signals detect defects, wrong SKU, packaging issues and line deviations early.
+
+Downtime Risk Is Predicted From Live Signals. Vibration, current, temperature and utilisation patterns feed failure prediction, spares reservation and maintenance scheduling.
+
+Operators Get SOPs, Training and Escalation in Flow. Digital SOPs, shift handover summaries and escalation routing help reduce labour pressure and turnover risk.
+
+WIP, Schedule and Energy Are Balanced Continuously. Production planning, WIP and energy signals are used to recommend line actions under cost, demand and resource pressure.
+
+One Governed Platform, Many Manufacturing Agents. UniStack, UniWeave, UniScale and UniProtect create a repeatable agent factory for factory, warehouse and route-to-market outcomes.
+
+Cambodian Banking Moves to AI-Grade Control. Smart Axiata and AIonOS combine mobile identity, telco signals and agentic AI workflows for digital banking outcomes.
+
+Accounts Open in Minutes, Not Days. Smart Verify and AI digital onboarding reduce branch visits, paper KYC and activation delay.
+
+Thin-File Customers Become Scoreable. Anonymised mobile usage, top-up, tenure and mobility patterns support credit decisions under consent and governance.
+
+Fraud Is Scored Before Money Moves. Transaction behaviour, location checks and relationship graphs are monitored for fraud, AML and SIM-swap risk.
+
+NBC Reporting Becomes Audit-Ready by Default. Suspicious transaction reports, loan decisions, KYC reviews and fraud case triage are logged, explainable and queued for human sign-off.
+
+Banking Service Becomes 24/7 and Personalised. UniWeave powers voice, chat, app and web banking in Khmer and English while UniScale enables personalised retention and offers.
