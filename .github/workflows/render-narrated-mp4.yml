@@ -1,0 +1,52 @@
+name: Render narrated airport demo MP4
+
+on:
+  workflow_dispatch:
+    inputs:
+      narration_run_id:
+        description: 'Run ID from "Generate narration MP3" workflow'
+        required: true
+        type: string
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-dejavu-core xvfb
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install Playwright Chromium
+        run: python -m playwright install chromium
+
+      - name: Download narration MP3 artifact
+        uses: dawidd6/action-download-artifact@v6
+        with:
+          workflow: generate-narration-mp3.yml
+          run_id: ${{ inputs.narration_run_id }}
+          name: airport-agent-narration-mp3
+          path: assets/audio
+
+      - name: Verify narration asset exists
+        run: test -f assets/audio/airport-agent-narration.mp3
+
+      - name: Render narrated MP4
+        run: python3 scripts/render_mp4.py
+
+      - name: Upload MP4 artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: airport-agent-demo-narrated-mp4
+          path: dist/airport-agent-demo-narrated.mp4

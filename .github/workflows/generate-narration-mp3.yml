@@ -1,0 +1,31 @@
+name: Generate narration MP3
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate narration MP3
+        run: python3 scripts/generate_narration.py
+
+      - name: Verify narration artifact exists
+        run: test -f assets/audio/airport-agent-narration.mp3
+
+      - name: Upload MP3 artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: airport-agent-narration-mp3
+          path: assets/audio/airport-agent-narration.mp3

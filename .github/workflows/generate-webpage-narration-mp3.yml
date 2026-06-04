@@ -1,0 +1,60 @@
+name: Generate webpage narration MP3
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - data/scenes.json
+      - scripts/generate_webpage_narration.py
+      - .github/workflows/generate-webpage-narration-mp3.yml
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate webpage narration MP3 from scenes.json
+        run: python3 scripts/generate_webpage_narration.py
+
+      - name: Verify generated files exist
+        run: |
+          test -f assets/audio/narration-webpage.txt
+          test -f assets/audio/airport-agent-narration.mp3
+
+
+      - name: Commit generated webpage narration files
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          if git diff --quiet -- assets/audio/narration-webpage.txt assets/audio/airport-agent-narration.mp3; then
+            echo "No generated narration changes to commit"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/audio/narration-webpage.txt assets/audio/airport-agent-narration.mp3
+          git commit -m "chore: update webpage narration assets"
+          git push
+
+      - name: Upload webpage narration artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: airport-agent-webpage-narration
+          path: |
+            assets/audio/narration-webpage.txt
+            assets/audio/airport-agent-narration.mp3
