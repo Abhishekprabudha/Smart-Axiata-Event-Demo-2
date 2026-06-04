@@ -1,5 +1,4 @@
 let scenes = [];
-let chapters = [];
 let startTime = null;
 let pausedAt = 0;
 let raf = null;
@@ -7,6 +6,11 @@ let isPlaying = false;
 let voiceOn = true;
 let lastSceneId = null;
 let totalDuration = 1080;
+let activeSceneIndex = 0;
+let currentVideoName = null;
+let sceneAdvanceTimer = null;
+let narrationToken = 0;
+const videoPositions = {};
 const videoBase = 'assets/videos/';
 
 const els = {
@@ -26,7 +30,6 @@ const els = {
   queueGraph: document.getElementById('queueGraph'),
   telemetryFeed: document.getElementById('telemetryFeed'),
   modelDetails: document.getElementById('modelDetails'),
-  chapters: document.getElementById('chapters'),
   clock: document.getElementById('clock'),
   metricALabel: document.getElementById('metricALabel'),
   metricBLabel: document.getElementById('metricBLabel')
@@ -47,17 +50,73 @@ function fmt(seconds) {
   return `${m}:${s}`;
 }
 function currentScene(t) { return scenes.find(s => t >= s.start && t < s.end) || scenes[scenes.length - 1]; }
-function currentChapter(t) { return chapters.find(c => t >= c.start && t < c.end) || chapters[chapters.length - 1]; }
+function sceneIndexAt(t) { return Math.max(0, scenes.findIndex(s => t >= s.start && t < s.end)); }
 
-function speak(text) {
-  if (!voiceOn || !('speechSynthesis' in window)) return;
+function estimateNarrationDuration(text = '') {
+  const words = text.trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(3.5, (words / 145) * 60 + 0.6);
+}
+
+function clearSceneAdvance() {
+  if (sceneAdvanceTimer) clearTimeout(sceneAdvanceTimer);
+  sceneAdvanceTimer = null;
+  narrationToken += 1;
+}
+
+function saveCurrentVideoPosition() {
+  if (!currentVideoName || !Number.isFinite(els.video.currentTime)) return;
+  const duration = Number.isFinite(els.video.duration) ? els.video.duration : 0;
+  videoPositions[currentVideoName] = duration > 0 ? els.video.currentTime % duration : els.video.currentTime;
+}
+
+function playSceneVideo(videoName) {
+  if (!videoName) return;
+
+  if (currentVideoName === videoName) {
+    els.video.play().catch(() => {});
+    return;
+  }
+
+  currentVideoName = videoName;
+  els.video.src = videoBase + videoName;
+  els.video.onloadedmetadata = () => {
+    const resumeAt = videoPositions[videoName] || 0;
+    if (resumeAt > 0 && resumeAt < els.video.duration) {
+      els.video.currentTime = resumeAt;
+    }
+    els.video.play().catch(() => {});
+  };
+  els.video.play().catch(() => {});
+}
+
+function scheduleNarration(scene) {
+  clearSceneAdvance();
+  if (!isPlaying || !scene) return;
+
+  const token = narrationToken;
+  const text = scene.voice || `${scene.headline}. ${scene.caption}`;
+  const advance = () => {
+    if (token === narrationToken && isPlaying) advanceScene();
+  };
+
+  if (!voiceOn || !('speechSynthesis' in window)) {
+    sceneAdvanceTimer = setTimeout(advance, estimateNarrationDuration(text) * 1000);
+    return;
+  }
+
   window.speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  u.rate = 0.88; u.pitch = 0.9; u.volume = 1;
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.rate = 0.88;
+  utterance.pitch = 0.9;
+  utterance.volume = 1;
   const voices = window.speechSynthesis.getVoices();
   const preferred = voices.find(v => /Google UK English Male|Microsoft David|Daniel|Google US English|Microsoft Ravi/i.test(v.name));
-  if (preferred) u.voice = preferred;
-  window.speechSynthesis.speak(u);
+  if (preferred) utterance.voice = preferred;
+  utterance.onend = advance;
+  utterance.onerror = () => {
+    sceneAdvanceTimer = setTimeout(advance, estimateNarrationDuration(text) * 1000);
+  };
+  window.speechSynthesis.speak(utterance);
 }
 
 function buildSpark(svg, baseline, variance, t, queue=false) {
@@ -79,7 +138,6 @@ function renderTelemetry(scene, elapsed) {
   const p = profiles[scene.chapter] || profiles['Airport Ecosystem'];
   els.metricALabel.textContent = p[0];
   els.metricBLabel.textContent = p[1];
-  const local = elapsed - scene.start;
   buildSpark(els.throughputGraph, p[2], 10, elapsed, false);
   buildSpark(els.queueGraph, p[3], 12, elapsed + 2, true);
   const kpis = Object.entries(scene.kpis || {});
@@ -94,83 +152,111 @@ function renderTelemetry(scene, elapsed) {
   ].map((line, i) => `<div class="feed-row"><span class="feed-tag">${i+1}</span><span class="feed-value">${line}</span></div>`).join('');
 }
 
-function renderChapters(elapsed) {
-  els.chapters.innerHTML = chapters.map(c => {
-    const active = elapsed >= c.start && elapsed < c.end ? 'active' : '';
-    return `<button class="chapter-pill ${active}" data-start="${c.start}"><span>${c.name}</span><small>${fmt(c.start)}–${fmt(c.end)}</small></button>`;
-  }).join('');
-  document.querySelectorAll('.chapter-pill').forEach(btn => {
-    btn.onclick = () => seekTo(Number(btn.dataset.start));
-  });
+
+function updateProgress(elapsed) {
+  els.progress.style.width = `${Math.min(100, elapsed / totalDuration * 100)}%`;
+  els.clock.textContent = `${fmt(elapsed)} / ${fmt(totalDuration)}`;
 }
 
-function renderScene(scene, elapsed) {
+function renderScene(scene, elapsed, options = {}) {
   if (!scene) return;
-  if (lastSceneId !== scene.id) {
-    els.video.src = videoBase + scene.video;
-    els.video.play().catch(()=>{});
+  const enteringScene = lastSceneId !== scene.id || options.force;
+  if (enteringScene) {
+    if (lastSceneId && lastSceneId !== scene.id) saveCurrentVideoPosition();
+    playSceneVideo(scene.video);
     els.chapter.textContent = scene.chapter || '';
     els.section.textContent = scene.section;
     els.headline.textContent = scene.headline;
     els.caption.textContent = scene.caption;
     els.agents.innerHTML = scene.agents.map(a => `<div class="agent">${a}</div>`).join('');
     els.kpis.innerHTML = Object.entries(scene.kpis).map(([k,v]) => `<div class="kpi"><div class="label">${k}</div><div class="value">${v}</div></div>`).join('');
-    if (isPlaying) speak(scene.voice || `${scene.headline}. ${scene.caption}`);
     lastSceneId = scene.id;
+    if (isPlaying) scheduleNarration(scene);
   }
-  els.progress.style.width = `${Math.min(100, elapsed / totalDuration * 100)}%`;
-  els.clock.textContent = `${fmt(elapsed)} / ${fmt(totalDuration)}`;
+  updateProgress(elapsed);
   renderTelemetry(scene, elapsed);
-  renderChapters(elapsed);
 }
 
 function tick(now) {
   if (!startTime) startTime = now - pausedAt * 1000;
-  const elapsed = Math.min(totalDuration, (now - startTime) / 1000);
+  const scene = scenes[activeSceneIndex] || scenes[scenes.length - 1];
+  const sceneElapsed = (now - startTime) / 1000;
+  const elapsed = Math.min(totalDuration, scene.start + sceneElapsed);
   pausedAt = elapsed;
-  renderScene(currentScene(elapsed), elapsed);
-  if (elapsed < totalDuration && isPlaying) raf = requestAnimationFrame(tick);
-  else { isPlaying = false; els.playBtn.textContent = '▶ Start narrated demo'; }
+  renderScene(scene, elapsed);
+  if (isPlaying) raf = requestAnimationFrame(tick);
+}
+
+function advanceScene() {
+  saveCurrentVideoPosition();
+  if (activeSceneIndex >= scenes.length - 1) {
+    cancelAnimationFrame(raf);
+    isPlaying = false;
+    startTime = null;
+    pausedAt = totalDuration;
+    updateProgress(totalDuration);
+    els.playBtn.textContent = '▶ Start narrated demo';
+    return;
+  }
+
+  activeSceneIndex += 1;
+  pausedAt = scenes[activeSceneIndex].start;
+  startTime = null;
+  lastSceneId = null;
+  renderScene(scenes[activeSceneIndex], pausedAt, { force: true });
 }
 
 function startDemo() {
-  if (isPlaying) return;
+  if (isPlaying || !scenes.length) return;
   isPlaying = true;
+  activeSceneIndex = sceneIndexAt(pausedAt);
+  if (activeSceneIndex < 0) activeSceneIndex = 0;
+  pausedAt = scenes[activeSceneIndex].start;
   startTime = null;
   els.playBtn.textContent = '▶ Playing';
+  renderScene(scenes[activeSceneIndex], pausedAt, { force: true });
   raf = requestAnimationFrame(tick);
 }
 function pauseDemo() {
   if (!isPlaying) return;
   cancelAnimationFrame(raf);
   window.speechSynthesis?.pause();
+  if (sceneAdvanceTimer) clearTimeout(sceneAdvanceTimer);
+  saveCurrentVideoPosition();
+  els.video.pause();
   isPlaying = false;
   startTime = null;
   els.playBtn.textContent = '▶ Resume';
 }
 function resetDemo() {
   cancelAnimationFrame(raf);
+  clearSceneAdvance();
   window.speechSynthesis?.cancel();
   isPlaying = false;
   startTime = null;
   pausedAt = 0;
+  activeSceneIndex = 0;
   lastSceneId = null;
+  currentVideoName = null;
+  Object.keys(videoPositions).forEach(key => { videoPositions[key] = 0; });
   els.playBtn.textContent = '▶ Start narrated demo';
   renderScene(scenes[0], 0);
 }
 function seekTo(seconds) {
   cancelAnimationFrame(raf);
+  clearSceneAdvance();
   window.speechSynthesis?.cancel();
-  pausedAt = Math.max(0, Math.min(totalDuration, seconds));
+  saveCurrentVideoPosition();
+  activeSceneIndex = sceneIndexAt(seconds);
+  pausedAt = scenes[activeSceneIndex]?.start || 0;
   startTime = null;
   lastSceneId = null;
-  renderScene(currentScene(pausedAt), pausedAt);
+  renderScene(scenes[activeSceneIndex], pausedAt, { force: true });
   if (isPlaying) raf = requestAnimationFrame(tick);
 }
 
-Promise.all([fetch('data/scenes.json').then(r => r.json()), fetch('data/chapters.json').then(r => r.json())]).then(([sceneJson, chapterJson]) => {
+fetch('data/scenes.json').then(r => r.json()).then(sceneJson => {
   scenes = sceneJson;
-  chapters = chapterJson;
   totalDuration = scenes[scenes.length - 1].end;
   renderScene(scenes[0], 0);
 });
@@ -184,5 +270,7 @@ els.resetBtn.addEventListener('click', resetDemo);
 els.muteBtn.addEventListener('click', () => {
   voiceOn = !voiceOn;
   els.muteBtn.textContent = `Voice: ${voiceOn ? 'On' : 'Off'}`;
-  if (!voiceOn) window.speechSynthesis?.cancel();
+  clearSceneAdvance();
+  window.speechSynthesis?.cancel();
+  if (isPlaying) scheduleNarration(scenes[activeSceneIndex]);
 });
