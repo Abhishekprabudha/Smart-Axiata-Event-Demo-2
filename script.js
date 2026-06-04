@@ -155,6 +155,17 @@ const chartTypes = [
   'Sparkline'
 ];
 
+const intelligenceEquations = [
+  { formula: 'I<sub>t</sub> = σ(w<sub>s</sub>S<sub>t</sub> + w<sub>c</sub>C<sub>t</sub> + w<sub>k</sub>K<sub>t</sub>)', variables: 'S signals · C context · K KPI' },
+  { formula: 'R<sub>t</sub> = P(e<sub>t</sub>|x<sub>t</sub>) × L<sub>impact</sub>', variables: 'e event · x features · L loss' },
+  { formula: 'A* = argmax<sub>a</sub> E[ΔKPI | a,x<sub>t</sub>]', variables: 'a action · x state · KPI outcome' },
+  { formula: 'η = D<sub>t</sub> / C<sub>t</sub> − SLA<sub>gap</sub>', variables: 'D demand · C capacity · SLA target' },
+  { formula: 'τ = ETA<sub>pred</sub> − ETA<sub>plan</sub>', variables: 'ETA prediction · plan baseline' },
+  { formula: 'Z = |x<sub>t</sub> − μ<sub>t</sub>| / σ<sub>t</sub>', variables: 'x signal · μ norm · σ volatility' },
+  { formula: 'Y = Σ p<sub>i</sub>v<sub>i</sub> − c<sub>ops</sub>', variables: 'p probability · v value · c cost' },
+  { formula: 'G = αN<sub>links</sub> + βF<sub>flow</sub> + γT<sub>risk</sub>', variables: 'N graph · F flow · T trust' }
+];
+
 function pointsPath(values, width, height, inset = 8) {
   const step = (width - inset * 2) / Math.max(1, values.length - 1);
   return values.map((v, i) => `${i === 0 ? 'M' : 'L'} ${inset + i * step} ${height - inset - (v / 100) * (height - inset * 2)}`).join(' ');
@@ -285,6 +296,11 @@ function agentChartType(scene, agentIndex) {
   return chartTypes[(sceneIndex * 3 + agentIndex) % chartTypes.length];
 }
 
+function agentIntelligenceEquation(scene, agentIndex) {
+  const sceneIndex = Math.max(0, scenes.findIndex(s => s.id === scene.id));
+  return intelligenceEquations[(sceneIndex * 2 + agentIndex) % intelligenceEquations.length];
+}
+
 function renderAgentCharts(scene, elapsed, profile) {
   const agents = scene.agents || [];
   els.telemetryGrid.innerHTML = agents.map((agent, index) => {
@@ -292,9 +308,13 @@ function renderAgentCharts(scene, elapsed, profile) {
     const baseline = Math.min(88, profile[2] + index * 4 - (index % 2) * 8);
     const values = chartSeries(scene.id.length + index * 5, baseline, 13 + index * 2, elapsed, type === 'Radar Chart' ? 6 : 8);
     const svg = renderChartSvg(type, values, index % 2 ? 'warm' : 'cool', elapsed, index + scene.id.length);
+    const equation = agentIntelligenceEquation(scene, index);
     return `<div class="graph-card ${index % 2 ? 'warm' : 'cool'}">
       <div class="graph-label">${agent}</div>
-      <div class="chart-type">${type}</div>
+      <div class="intelligence-equation" title="${equation.variables}">
+        <span class="equation-formula">${equation.formula}</span>
+        <span class="equation-variables">${equation.variables}</span>
+      </div>
       <svg class="spark" viewBox="0 0 260 82" preserveAspectRatio="none">${svg}</svg>
     </div>`;
   }).join('');
