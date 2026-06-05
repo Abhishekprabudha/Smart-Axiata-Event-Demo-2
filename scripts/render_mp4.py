@@ -321,9 +321,12 @@ def prepare_demo_page(
     browser = launch_browser(playwright, width, height, env, channel)
     page = browser.new_page(viewport={"width": width, "height": height}, device_scale_factor=1)
     if scene_durations:
+        # Python Playwright accepts only the script/path for add_init_script,
+        # so serialize the duration data into the script instead of passing it
+        # as a separate positional argument.
+        durations_json = json.dumps(scene_durations)
         page.add_init_script(
-            "durations => { window.__AIONOS_RENDER_SCENE_DURATIONS__ = durations; }",
-            scene_durations,
+            f"window.__AIONOS_RENDER_SCENE_DURATIONS__ = {durations_json};"
         )
     page.goto(url, wait_until="networkidle")
     page.wait_for_selector("#playBtn")
