@@ -12,6 +12,9 @@ let sceneAdvanceTimer = null;
 let narrationToken = 0;
 const videoPositions = {};
 const videoBase = 'assets/videos/';
+const renderSceneDurations = Array.isArray(window.__AIONOS_RENDER_SCENE_DURATIONS__)
+  ? window.__AIONOS_RENDER_SCENE_DURATIONS__
+  : null;
 
 const els = {
   video: document.getElementById('bgVideo'),
@@ -69,6 +72,12 @@ function estimateNarrationDuration(text = '') {
   return Math.max(3.5, (words / 145) * 60 + 0.6);
 }
 
+function renderSyncedSceneDuration() {
+  if (!renderSceneDurations) return null;
+  const duration = Number(renderSceneDurations[activeSceneIndex]);
+  return Number.isFinite(duration) && duration > 0 ? duration : null;
+}
+
 function clearSceneAdvance() {
   if (sceneAdvanceTimer) clearTimeout(sceneAdvanceTimer);
   sceneAdvanceTimer = null;
@@ -112,7 +121,8 @@ function scheduleNarration(scene) {
   };
 
   if (!voiceOn || !('speechSynthesis' in window)) {
-    sceneAdvanceTimer = setTimeout(advance, estimateNarrationDuration(text) * 1000);
+    const duration = renderSyncedSceneDuration() || estimateNarrationDuration(text);
+    sceneAdvanceTimer = setTimeout(advance, duration * 1000);
     return;
   }
 
