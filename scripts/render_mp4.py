@@ -118,10 +118,11 @@ def wait_for_server(port: int, timeout: float = 10.0) -> None:
     raise SystemExit(f"Local web server did not start on port {port}")
 
 
-def play_demo_once(url: str, duration: int, width: int, height: int) -> None:
+def play_demo_once(url: str, duration: int, width: int, height: int, env: dict[str, str]) -> None:
     with sync_playwright() as p:
         browser = p.chromium.launch(
             headless=False,
+            env=env,
             args=[
                 "--autoplay-policy=no-user-gesture-required",
                 "--disable-dev-shm-usage",
@@ -202,7 +203,7 @@ def main() -> None:
         ]
         ffmpeg_proc = start_process(ffmpeg_cmd, env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         time.sleep(1)
-        play_demo_once(url, duration, args.width, args.height)
+        play_demo_once(url, duration, args.width, args.height, env)
         ffmpeg_proc.wait(timeout=duration + 60)
         if ffmpeg_proc.returncode != 0:
             raise SystemExit("ffmpeg capture failed")
