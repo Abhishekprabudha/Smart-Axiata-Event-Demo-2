@@ -23,6 +23,42 @@ python3 -m http.server 8000
 
 Then open `http://localhost:8000`.
 
+
+## Record a downloadable MP4 of the running webpage
+
+The project includes a recorder that launches the static GitHub Pages-style webpage in Chromium, captures the live browser display with `ffmpeg`/`x11grab`, and muxes in the generated narration MP3. This is a screen recording of the webpage running, not a direct HTML-to-video render.
+
+### Local recording
+
+Install the Python dependencies and Playwright browser once:
+
+```bash
+pip install -r requirements.txt
+python -m playwright install chromium
+```
+
+Then record the full demo:
+
+```bash
+npm run record
+```
+
+The downloadable MP4 is written to:
+
+```text
+dist/airport-agent-demo-webpage-recording.mp4
+```
+
+For a short pipeline check, run:
+
+```bash
+python3 scripts/render_mp4.py --duration 5 --output dist/smoke-webpage-recording.mp4 --skip-narration-generate
+```
+
+### GitHub Actions recording
+
+Run the **Render recorded webpage MP4** workflow manually from the Actions tab. The workflow records the live page in Chromium and uploads `airport-agent-demo-webpage-recording-mp4` as a downloadable artifact. Use the optional `duration_seconds` input for a short test recording, or leave it blank for the full storyboard duration.
+
 ## Main files
 
 - `index.html` — UI shell

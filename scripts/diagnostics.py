@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Diagnostics for narrated MP4 rendering (local + GitHub Actions)."""
+"""Diagnostics for live webpage MP4 recording (local + GitHub Actions)."""
 from __future__ import annotations
 
 import importlib
@@ -65,8 +65,8 @@ def main() -> int:
     ffmpeg = shutil.which("ffmpeg")
     local_ready &= check("local ffmpeg available on PATH", ffmpeg is not None, ffmpeg or "not found")
 
-    xvfb = shutil.which("xvfb-run")
-    local_ready &= check("local xvfb-run available on PATH", xvfb is not None, xvfb or "not found")
+    xvfb = shutil.which("Xvfb")
+    local_ready &= check("local Xvfb available on PATH", xvfb is not None, xvfb or "not found")
 
     try:
         importlib.import_module("playwright")
@@ -85,7 +85,7 @@ def main() -> int:
         github_ready &= check("workflow installs xvfb", "xvfb" in wf_text)
         github_ready &= check("workflow installs Python requirements", "pip install -r requirements.txt" in wf_text)
         github_ready &= check("workflow installs Playwright Chromium", "playwright install chromium" in wf_text)
-        github_ready &= check("workflow runs render script", "python3 scripts/render_mp4.py" in wf_text)
+        github_ready &= check("workflow records live webpage", "python3 scripts/render_mp4.py" in wf_text)
 
     local_ready &= common_ok
     github_ready &= common_ok
