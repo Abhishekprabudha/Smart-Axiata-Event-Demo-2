@@ -26,7 +26,7 @@ Then open `http://localhost:8000`.
 
 ## Record a downloadable MP4 of the running webpage
 
-The project includes a recorder that launches the static GitHub Pages-style webpage in Chromium, captures the live browser display with `ffmpeg`/`x11grab`, and muxes in the generated narration MP3. This is a screen recording of the webpage running, not a direct HTML-to-video render.
+The project includes a recorder that launches the static GitHub Pages-style webpage in Chromium, captures the live browser display with `ffmpeg`/`x11grab`, and muxes in the generated narration MP3. This is a screen recording of the webpage running, not a direct HTML-to-video render. During recording, the scene advance timers are derived from the narration MP3 duration so the visuals stay synchronized with the muxed voiceover instead of running ahead of the audio.
 
 ### Local recording
 
@@ -54,6 +54,8 @@ For a short pipeline check, run:
 ```bash
 python3 scripts/render_mp4.py --duration 5 --output dist/smoke-webpage-recording.mp4 --skip-narration-generate
 ```
+
+If you need to compare against the original fixed storyboard timings, pass `--no-sync-to-audio`; otherwise audio-synced render timing is enabled by default.
 
 ### GitHub Actions recording
 

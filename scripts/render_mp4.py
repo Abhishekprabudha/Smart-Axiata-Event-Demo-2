@@ -21,6 +21,7 @@ import time
 from pathlib import Path
 from typing import Iterable
 
+
 from playwright.sync_api import Error as PlaywrightError
 from playwright.sync_api import sync_playwright
 
@@ -70,6 +71,108 @@ def find_free_port(preferred: int) -> int:
 def scene_duration() -> int:
     scenes = json.loads(SCENES.read_text(encoding="utf-8"))
     return int(max(float(scene["end"]) for scene in scenes))
+
+
+def read_scenes() -> list[dict[str, object]]:
+    return json.loads(SCENES.read_text(encoding="utf-8"))
+
+
+def mp3_duration(path: Path) -> float:
+    """Return MP3 duration in seconds without requiring ffprobe.
+
+    The local render path already needs ffmpeg for capture/muxing, but keeping
+    duration probing in Python lets us compute render timing even in limited
+    environments and avoids depending on a separate ffprobe binary.
+    """
+    data = path.read_bytes()
+    offset = 0
+    if data[:3] == b"ID3" and len(data) >= 10:
+        offset = 10 + (
+            ((data[6] & 0x7F) << 21)
+            | ((data[7] & 0x7F) << 14)
+            | ((data[8] & 0x7F) << 7)
+            | (data[9] & 0x7F)
+        )
+
+    bitrates = {
+        1: {
+            1: {1: 32, 2: 40, 3: 48, 4: 56, 5: 64, 6: 80, 7: 96, 8: 112, 9: 128, 10: 160, 11: 192, 12: 224, 13: 256, 14: 320},
+            2: {1: 32, 2: 48, 3: 56, 4: 64, 5: 80, 6: 96, 7: 112, 8: 128, 9: 160, 10: 192, 11: 224, 12: 256, 13: 320, 14: 384},
+            3: {1: 32, 2: 40, 3: 48, 4: 56, 5: 64, 6: 80, 7: 96, 8: 112, 9: 128, 10: 160, 11: 192, 12: 224, 13: 256, 14: 320},
+        },
+        2: {
+            1: {1: 32, 2: 48, 3: 56, 4: 64, 5: 80, 6: 96, 7: 112, 8: 128, 9: 144, 10: 160, 11: 176, 12: 192, 13: 224, 14: 256},
+            2: {1: 8, 2: 16, 3: 24, 4: 32, 5: 40, 6: 48, 7: 56, 8: 64, 9: 80, 10: 96, 11: 112, 12: 128, 13: 144, 14: 160},
+            3: {1: 8, 2: 16, 3: 24, 4: 32, 5: 40, 6: 48, 7: 56, 8: 64, 9: 80, 10: 96, 11: 112, 12: 128, 13: 144, 14: 160},
+        },
+    }
+    sample_rates = {
+        0: {0: 11025, 1: 12000, 2: 8000},
+        2: {0: 22050, 1: 24000, 2: 16000},
+        3: {0: 44100, 1: 48000, 2: 32000},
+    }
+
+    duration = 0.0
+    i = offset
+    while i + 4 <= len(data):
+        if data[i] != 0xFF or (data[i + 1] & 0xE0) != 0xE0:
+            i += 1
+            continue
+        header = int.from_bytes(data[i:i + 4], "big")
+        version_id = (header >> 19) & 0x3
+        layer_id = (header >> 17) & 0x3
+        bitrate_index = (header >> 12) & 0xF
+        sample_rate_index = (header >> 10) & 0x3
+        padding = (header >> 9) & 0x1
+        if version_id == 1 or layer_id == 0 or bitrate_index in (0, 15) or sample_rate_index == 3:
+            i += 1
+            continue
+
+        version = 3 if version_id == 3 else 2 if version_id == 2 else 0
+        layer = {3: 1, 2: 2, 1: 3}[layer_id]
+        bitrate = bitrates[1 if version == 3 else 2][layer][bitrate_index] * 1000
+        sample_rate = sample_rates[version][sample_rate_index]
+        samples = 384 if layer == 1 else 1152 if version == 3 or layer != 3 else 576
+        if layer == 1:
+            frame_length = ((12 * bitrate) // sample_rate + padding) * 4
+        else:
+            coefficient = 144 if version == 3 else 72
+            frame_length = (coefficient * bitrate) // sample_rate + padding
+        if frame_length <= 0:
+            i += 1
+            continue
+        duration += samples / sample_rate
+        i += frame_length
+
+    if duration <= 0:
+        raise SystemExit(f"Could not determine MP3 duration for {path}")
+    return duration
+
+
+def narration_text_for_scene(scene: dict[str, object]) -> str:
+    headline = str(scene.get("headline", "")).strip()
+    caption = str(scene.get("caption", "")).strip()
+    return ". ".join(part for part in (headline, caption) if part)
+
+
+def estimated_tts_duration(text: str) -> float:
+    words = len(text.strip().split())
+    return max(3.5, (words / 145) * 60 + 0.6)
+
+
+def audio_synced_scene_durations(audio_duration: float) -> list[float]:
+    scenes = read_scenes()
+    estimates = [estimated_tts_duration(narration_text_for_scene(scene)) for scene in scenes]
+    total_estimate = sum(estimates)
+    if total_estimate <= 0:
+        raise SystemExit("Could not estimate scene narration durations")
+    return [estimate * audio_duration / total_estimate for estimate in estimates]
+
+
+def write_render_timing(durations: list[float]) -> Path:
+    path = TMP / "render-scene-durations.json"
+    path.write_text(json.dumps(durations), encoding="utf-8")
+    return path
 
 
 def ensure_narration_audio(skip_generate: bool = False) -> None:
@@ -206,18 +309,29 @@ def wait_for_background_video(page, timeout_ms: int = 15000) -> None:
         ) from exc
 
 
-def prepare_demo_page(playwright, url: str, width: int, height: int, env: dict[str, str], channel: str):
+def prepare_demo_page(
+    playwright,
+    url: str,
+    width: int,
+    height: int,
+    env: dict[str, str],
+    channel: str,
+    scene_durations: list[float] | None,
+):
     browser = launch_browser(playwright, width, height, env, channel)
     page = browser.new_page(viewport={"width": width, "height": height}, device_scale_factor=1)
+    if scene_durations:
+        page.add_init_script(
+            "durations => { window.__AIONOS_RENDER_SCENE_DURATIONS__ = durations; }",
+            scene_durations,
+        )
     page.goto(url, wait_until="networkidle")
     page.wait_for_selector("#playBtn")
     page.wait_for_selector("#bgVideo")
     # The MP3 is muxed in after capture, so disable in-browser speech synthesis
     # to keep the recorded output synchronized and free from duplicate speech.
     page.click("#muteBtn")
-    page.click("#playBtn")
     wait_for_background_video(page)
-    page.wait_for_timeout(500)
     return browser, page
 
 
@@ -232,6 +346,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output", type=Path, default=DEFAULT_OUT)
     parser.add_argument("--skip-narration-generate", action="store_true", help="Use the existing MP3 without regenerating it")
     parser.add_argument(
+        "--no-sync-to-audio",
+        action="store_true",
+        help="Disable render-only scene timing derived from the narration MP3 duration",
+    )
+    parser.add_argument(
         "--browser-channel",
         default="chrome",
         help="Playwright browser channel to use; default Chrome supports H.264 MP4 video playback. Use bundled-chromium only for diagnostics.",
@@ -241,17 +360,23 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
-    duration = args.duration or scene_duration()
     output = args.output if args.output.is_absolute() else ROOT / args.output
 
     ensure_cmd("ffmpeg", "Install ffmpeg first.")
     ensure_cmd("Xvfb", "Install xvfb first.")
     ensure_narration_audio(skip_generate=args.skip_narration_generate)
 
+    audio_duration = mp3_duration(AUDIO)
+    scene_durations = None if args.no_sync_to_audio else audio_synced_scene_durations(audio_duration)
+    duration = args.duration or int(round(audio_duration if scene_durations else scene_duration()))
+
     output.parent.mkdir(parents=True, exist_ok=True)
     if TMP.exists():
         shutil.rmtree(TMP)
     TMP.mkdir(parents=True)
+    if scene_durations:
+        timing_path = write_render_timing(scene_durations)
+        print(f"Using audio-synced render timing ({sum(scene_durations):.2f}s total) from {timing_path}")
 
     port = find_free_port(args.port)
     url = f"http://127.0.0.1:{port}/index.html"
@@ -279,7 +404,9 @@ def main() -> None:
         wait_for_server(port)
 
         with sync_playwright() as playwright:
-            browser, page = prepare_demo_page(playwright, url, args.width, args.height, env, args.browser_channel)
+            browser, page = prepare_demo_page(
+                playwright, url, args.width, args.height, env, args.browser_channel, scene_durations
+            )
 
             ffmpeg_cmd = [
                 "ffmpeg", "-y",
@@ -291,6 +418,7 @@ def main() -> None:
                 str(RAW),
             ]
             ffmpeg_proc = start_process(ffmpeg_cmd, env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            page.click("#playBtn")
             page.wait_for_timeout(duration * 1000)
             ffmpeg_proc.wait(timeout=duration + 60)
         if ffmpeg_proc.returncode != 0:
