@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Record the running webpage demo to a downloadable MP4 file.
 
-This script serves the static app, opens it in Chromium on an Xvfb display,
-records that display with ffmpeg/x11grab, and muxes in the generated narration
-MP3. It intentionally captures the real browser UI instead of rendering frames
-from HTML directly.
+This script serves the static app, opens it in a Playwright-controlled browser
+on an Xvfb display, records that display with ffmpeg/x11grab, and muxes in
+the generated narration MP3. It intentionally captures the real browser UI
+instead of rendering frames from HTML directly.
 """
 from __future__ import annotations
 
@@ -21,6 +21,7 @@ import time
 from pathlib import Path
 from typing import Iterable
 
+from playwright.sync_api import Error as PlaywrightError
 from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -118,27 +119,106 @@ def wait_for_server(port: int, timeout: float = 10.0) -> None:
     raise SystemExit(f"Local web server did not start on port {port}")
 
 
-def play_demo_once(url: str, duration: int, width: int, height: int, env: dict[str, str]) -> None:
-    with sync_playwright() as p:
-        browser = p.chromium.launch(
-            headless=False,
-            env=env,
-            args=[
-                "--autoplay-policy=no-user-gesture-required",
-                "--disable-dev-shm-usage",
-                "--no-sandbox",
-                f"--window-size={width},{height}",
-            ],
+def launch_browser(playwright, width: int, height: int, env: dict[str, str], channel: str):
+    launch_options = {
+        "headless": False,
+        "env": env,
+        "args": [
+            "--autoplay-policy=no-user-gesture-required",
+            "--disable-dev-shm-usage",
+            "--disable-gpu",
+            "--disable-features=UseChromeOSDirectVideoDecoder,VaapiVideoDecoder",
+            "--no-sandbox",
+            f"--window-size={width},{height}",
+        ],
+    }
+    if channel != "bundled-chromium":
+        launch_options["channel"] = channel
+
+    try:
+        return playwright.chromium.launch(**launch_options)
+    except PlaywrightError as exc:
+        if channel == "bundled-chromium":
+            raise
+        raise SystemExit(
+            f"Could not launch Playwright browser channel '{channel}'. "
+            f"Install it with `python -m playwright install {channel}` or pass "
+            "`--browser-channel bundled-chromium` for diagnostics. "
+            "Official Chrome is the default because Playwright's bundled Chromium "
+            "often cannot decode H.264 MP4 background videos.\n"
+            f"Original error: {exc}"
+        ) from exc
+
+
+def background_video_state(page) -> dict[str, object]:
+    return page.evaluate(
+        """() => {
+            const video = document.getElementById('bgVideo');
+            if (!video) return { found: false };
+            const error = video.error ? { code: video.error.code, message: video.error.message } : null;
+            return {
+                found: true,
+                src: video.getAttribute('src'),
+                currentSrc: video.currentSrc,
+                readyState: video.readyState,
+                networkState: video.networkState,
+                paused: video.paused,
+                ended: video.ended,
+                currentTime: video.currentTime,
+                duration: video.duration,
+                videoWidth: video.videoWidth,
+                videoHeight: video.videoHeight,
+                error,
+                canPlayH264: video.canPlayType('video/mp4; codecs="avc1.42E01E"'),
+                canPlayMp4: video.canPlayType('video/mp4'),
+            };
+        }"""
+    )
+
+
+def wait_for_background_video(page, timeout_ms: int = 15000) -> None:
+    try:
+        page.wait_for_function(
+            """() => {
+                const video = document.getElementById('bgVideo');
+                return Boolean(
+                    video
+                    && video.currentSrc
+                    && !video.error
+                    && !video.paused
+                    && video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA
+                    && video.videoWidth > 0
+                    && video.videoHeight > 0
+                );
+            }""",
+            timeout=timeout_ms,
         )
-        page = browser.new_page(viewport={"width": width, "height": height}, device_scale_factor=1)
-        page.goto(url, wait_until="networkidle")
-        page.wait_for_timeout(1000)
-        # The MP3 is muxed in after capture, so disable in-browser speech synthesis
-        # to keep the recorded output synchronized and free from duplicate speech.
-        page.click("#muteBtn")
-        page.click("#playBtn")
-        page.wait_for_timeout(duration * 1000)
-        browser.close()
+    except PlaywrightError as exc:
+        state = background_video_state(page)
+        raise SystemExit(
+            "Background video did not become playable before recording started. "
+            "This is the likely reason the rendered MP4 is missing the webpage's "
+            "running background video. The committed video assets are MP4 files, "
+            "and Playwright's bundled Chromium build commonly lacks H.264/AAC "
+            "proprietary codec support; use the default `--browser-channel chrome` "
+            "with `python -m playwright install chrome`. "
+            f"Video state: {json.dumps(state, sort_keys=True)}"
+        ) from exc
+
+
+def prepare_demo_page(playwright, url: str, width: int, height: int, env: dict[str, str], channel: str):
+    browser = launch_browser(playwright, width, height, env, channel)
+    page = browser.new_page(viewport={"width": width, "height": height}, device_scale_factor=1)
+    page.goto(url, wait_until="networkidle")
+    page.wait_for_selector("#playBtn")
+    page.wait_for_selector("#bgVideo")
+    # The MP3 is muxed in after capture, so disable in-browser speech synthesis
+    # to keep the recorded output synchronized and free from duplicate speech.
+    page.click("#muteBtn")
+    page.click("#playBtn")
+    wait_for_background_video(page)
+    page.wait_for_timeout(500)
+    return browser, page
 
 
 def parse_args() -> argparse.Namespace:
@@ -151,6 +231,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--port", type=int, default=DEFAULT_PORT)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUT)
     parser.add_argument("--skip-narration-generate", action="store_true", help="Use the existing MP3 without regenerating it")
+    parser.add_argument(
+        "--browser-channel",
+        default="chrome",
+        help="Playwright browser channel to use; default Chrome supports H.264 MP4 video playback. Use bundled-chromium only for diagnostics.",
+    )
     return parser.parse_args()
 
 
@@ -174,6 +259,7 @@ def main() -> None:
     env["DISPLAY"] = args.display
 
     xvfb_proc = http_proc = ffmpeg_proc = None
+    browser = page = None
     try:
         xvfb_proc = start_process(
             ["Xvfb", args.display, "-screen", "0", f"{args.width}x{args.height}x24", "-ac"],
@@ -192,23 +278,28 @@ def main() -> None:
         )
         wait_for_server(port)
 
-        ffmpeg_cmd = [
-            "ffmpeg", "-y",
-            "-video_size", f"{args.width}x{args.height}",
-            "-framerate", str(args.fps),
-            "-f", "x11grab", "-i", f"{args.display}.0",
-            "-t", str(duration),
-            "-an", "-c:v", "libx264", "-preset", "veryfast", "-pix_fmt", "yuv420p",
-            str(RAW),
-        ]
-        ffmpeg_proc = start_process(ffmpeg_cmd, env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        time.sleep(1)
-        play_demo_once(url, duration, args.width, args.height, env)
-        ffmpeg_proc.wait(timeout=duration + 60)
+        with sync_playwright() as playwright:
+            browser, page = prepare_demo_page(playwright, url, args.width, args.height, env, args.browser_channel)
+
+            ffmpeg_cmd = [
+                "ffmpeg", "-y",
+                "-video_size", f"{args.width}x{args.height}",
+                "-framerate", str(args.fps),
+                "-f", "x11grab", "-i", f"{args.display}.0",
+                "-t", str(duration),
+                "-an", "-c:v", "libx264", "-preset", "veryfast", "-pix_fmt", "yuv420p",
+                str(RAW),
+            ]
+            ffmpeg_proc = start_process(ffmpeg_cmd, env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            page.wait_for_timeout(duration * 1000)
+            ffmpeg_proc.wait(timeout=duration + 60)
         if ffmpeg_proc.returncode != 0:
             raise SystemExit("ffmpeg capture failed")
     finally:
         stop_process(ffmpeg_proc)
+        if browser is not None:
+            with contextlib.suppress(Exception):
+                browser.close()
         stop_process(http_proc)
         stop_process(xvfb_proc)
 

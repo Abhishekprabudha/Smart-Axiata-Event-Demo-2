@@ -84,7 +84,7 @@ def main() -> int:
         github_ready &= check("workflow installs DejaVu fonts", "fonts-dejavu-core" in wf_text)
         github_ready &= check("workflow installs xvfb", "xvfb" in wf_text)
         github_ready &= check("workflow installs Python requirements", "pip install -r requirements.txt" in wf_text)
-        github_ready &= check("workflow installs Playwright Chromium", "playwright install chromium" in wf_text)
+        github_ready &= check("workflow installs Playwright Chrome", "playwright install chrome" in wf_text)
         github_ready &= check("workflow records live webpage", "python3 scripts/render_mp4.py" in wf_text)
 
     local_ready &= common_ok
