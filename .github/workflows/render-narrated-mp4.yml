@@ -1,12 +1,17 @@
-name: Render narrated airport demo MP4
+name: Render recorded webpage MP4
 
 on:
   workflow_dispatch:
     inputs:
-      narration_run_id:
-        description: 'Run ID from "Generate narration MP3" workflow'
-        required: true
+      duration_seconds:
+        description: 'Optional recording length in seconds; leave blank for the full storyboard'
+        required: false
         type: string
+      skip_narration_generate:
+        description: 'Use the committed MP3 instead of regenerating narration'
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   render:
@@ -31,22 +36,24 @@ jobs:
       - name: Install Playwright Chromium
         run: python -m playwright install chromium
 
-      - name: Download narration MP3 artifact
-        uses: dawidd6/action-download-artifact@v6
-        with:
-          workflow: generate-narration-mp3.yml
-          run_id: ${{ inputs.narration_run_id }}
-          name: airport-agent-narration-mp3
-          path: assets/audio
+      - name: Record live webpage to MP4
+        run: |
+          args=()
+          if [ -n "${{ inputs.duration_seconds }}" ]; then
+            args+=(--duration "${{ inputs.duration_seconds }}")
+          fi
+          if [ "${{ inputs.skip_narration_generate }}" = "true" ]; then
+            args+=(--skip-narration-generate)
+          fi
+          python3 scripts/render_mp4.py "${args[@]}"
 
-      - name: Verify narration asset exists
-        run: test -f assets/audio/airport-agent-narration.mp3
+      - name: Verify MP4 artifact exists
+        run: test -f dist/airport-agent-demo-webpage-recording.mp4
 
-      - name: Render narrated MP4
-        run: python3 scripts/render_mp4.py
-
-      - name: Upload MP4 artifact
+      - name: Upload recorded webpage MP4 artifact
         uses: actions/upload-artifact@v4
         with:
-          name: airport-agent-demo-narrated-mp4
-          path: dist/airport-agent-demo-narrated.mp4
+          name: airport-agent-demo-webpage-recording-mp4
+          path: |
+            dist/airport-agent-demo-webpage-recording.mp4
+            dist/airport-agent-demo-narrated.mp4
