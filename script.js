@@ -32,7 +32,7 @@ const els = {
 };
 
 
-const preferredNarrationVoice = 'en-GB-RyanNeural';
+const preferredNarrationVoice = 'en-HK-SamNeural';
 
 function normalizeVoiceName(value = '') {
   return value.toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -41,9 +41,10 @@ function normalizeVoiceName(value = '') {
 function selectNarrationVoice(voices = []) {
   const preferred = normalizeVoiceName(preferredNarrationVoice);
   return voices.find(v => [v.name, v.voiceURI, v.lang].some(value => normalizeVoiceName(value).includes(preferred)))
-    || voices.find(v => /ryan/i.test(`${v.name} ${v.voiceURI}`) && /^en-?gb/i.test(v.lang))
-    || voices.find(v => /^en-?gb/i.test(v.lang))
-    || voices.find(v => /Google UK English Male|Microsoft David|Daniel|Google US English|Microsoft Ravi/i.test(v.name));
+    || voices.find(v => /sam|yan/i.test(`${v.name} ${v.voiceURI}`) && /^en-?hk/i.test(v.lang))
+    || voices.find(v => /^en-?hk/i.test(v.lang))
+    || voices.find(v => /xiaoxiao|xiaoyi|yunxi|hanyu|tracy|sinji|Google 普通话|Google 國語/i.test(v.name))
+    || voices.find(v => /^zh-?(cn|hk|tw)/i.test(v.lang));
 }
 
 const profiles = {

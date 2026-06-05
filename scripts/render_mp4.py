@@ -11,6 +11,8 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT_DIR = ROOT / "dist"
 OUT = OUT_DIR / "airport-agent-demo-narrated.mp4"
 AUDIO = ROOT / "assets" / "audio" / "airport-agent-narration.mp3"
+NARRATION_TEXT = ROOT / "assets" / "audio" / "narration.txt"
+NARRATION_GENERATOR = ROOT / "scripts" / "generate_narration.py"
 TMP = ROOT / ".render_tmp"
 RAW = TMP / "raw-capture.mp4"
 
@@ -33,10 +35,13 @@ def ensure_cmd(name: str, hint: str):
 
 
 def ensure_narration_audio():
-    if AUDIO.exists():
+    sources = [NARRATION_TEXT, NARRATION_GENERATOR]
+    audio_is_current = AUDIO.exists() and all(AUDIO.stat().st_mtime >= source.stat().st_mtime for source in sources)
+    if audio_is_current:
         print(f"Using existing narration audio at {AUDIO}")
         return
-    run([sys.executable, str(ROOT / "scripts" / "generate_narration.py")])
+
+    run([sys.executable, str(NARRATION_GENERATOR)])
     if not AUDIO.exists():
         raise SystemExit("Narration audio was not generated. Aborting MP4 render to avoid silent output.")
 

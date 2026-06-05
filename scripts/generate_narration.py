@@ -6,7 +6,7 @@ import edge_tts
 ROOT = Path(__file__).resolve().parents[1]
 TEXT_PATH = ROOT / "assets" / "audio" / "narration.txt"
 OUT_PATH = ROOT / "assets" / "audio" / "airport-agent-narration.mp3"
-VOICE = "en-GB-RyanNeural"
+VOICE = "en-HK-SamNeural"
 RATE = "-2%"
 MAX_ATTEMPTS = 3
 

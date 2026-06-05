@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SCENES_PATH = ROOT / "data" / "scenes.json"
 OUT_TEXT_PATH = ROOT / "assets" / "audio" / "narration-webpage.txt"
 OUT_MP3_PATH = ROOT / "assets" / "audio" / "airport-agent-narration.mp3"
-VOICE = "en-GB-RyanNeural"
+VOICE = "en-HK-SamNeural"
 RATE = "-2%"
 MAX_ATTEMPTS = 3
 
