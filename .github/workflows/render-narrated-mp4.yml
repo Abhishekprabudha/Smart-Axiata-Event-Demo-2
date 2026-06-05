@@ -33,8 +33,8 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r requirements.txt
 
-      - name: Install Playwright Chromium
-        run: python -m playwright install chromium
+      - name: Install Playwright Chrome
+        run: python -m playwright install chrome
 
       - name: Record live webpage to MP4
         run: |
